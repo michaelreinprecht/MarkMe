@@ -1,41 +1,21 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
+import { View, Text, StyleSheet } from "react-native";
+import NavigationButton from "../components/NavigationButton";
+import { Colors } from "../constants/Constants";
 
 export default function MainMenu() {
-  const router = useRouter();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>MarkMe</Text>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Sequence Memory"
-          onPress={() => router.push("/sequence-memory")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Number Memory"
-          onPress={() => router.push("/number-memory")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Verbal Memory"
-          onPress={() => router.push("/verbal-memory")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Visual Memory"
-          onPress={() => router.push("/visual-memory")}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Highscores" onPress={() => router.push("/highscores")} />
-      </View>
+      <NavigationButton
+        text="Sequence Memory"
+        path="/sequence-memory"
+        icon={require("../assets/icon.png")}
+      />
+      <NavigationButton text="Number Memory" path="/number-memory" />
+      <NavigationButton text="Verbal Memory" path="/verbal-memory" />
+      <NavigationButton text="Visual Memory" path="/visual-memory" />
+      <NavigationButton text="Highscores" path="/highscores" />
     </View>
   );
 }
@@ -43,7 +23,7 @@ export default function MainMenu() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#A9D6E5", // Light blue background
+    backgroundColor: Colors.background,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -51,9 +31,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
     marginBottom: 20,
     fontWeight: "bold",
-  },
-  buttonContainer: {
-    width: "80%",
-    marginVertical: 10,
   },
 });
