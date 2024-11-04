@@ -4,12 +4,13 @@
 const Colors = {
   headerBackground: "#f4511e",
   headerTint: "#FFFFFF",
-  buttonPrimary: "#1f9ae0",
-  buttonSecondary: "#005687",
+  buttonPrimary: "#e6ffff",
+  buttonSecondary: "#1f9ae0",
   buttonBorder: "#B0BEC5",
   background: "#A9D6E5",
   darkText: "#37474F",
   lightText: "#FFFFFF",
+  buttonStart: "#FFFF00"
 };
 
 const Fonts = {

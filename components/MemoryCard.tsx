@@ -4,22 +4,24 @@ import { Colors } from "../constants/Constants";
 
 // Define a type for the props
 type MemoryCardProps = {
-    id: string | number; // Unique identifier for the button
+    id: number; // Unique identifier for the button
     highlight: boolean; // If set to true the button is beeing highlited for a set duration of time (highlightDuration). Use this to tell the user which button should be clicked ect...
-    highlightDuration?: number; // Optional number to set how long it should be highlighted when hightlight is set to true from outside => uses the isPressedColor.
+    highlightDuration?: number; // Optional number to set how long it should be highlighted when (hightlight) is set to true from outside => uses the isPressedColor.
     color?: string; // Optional color to override the default background color of the button
     isPressedColor?: string; // Optional color to override the default color when button is beeing clicked
+    disable?: boolean; //The users clicks wont be registered but the button can still be highlighted with (highlight)
     maintainClicked?: boolean; //Optional if this button is clicked, it will stay as clicked and cant be changed
     resetClicked?: boolean; // If true, programmatically resets the clicked state. Only use this if maintainClicked is true.
-    onClick: (id: string | number) => void; // Callback function that returns `id` when clicked. Use this to check if the button click was valid.
+    onClick: (id: number) => void; // Callback function that returns `id` when clicked. Use this to check if the button click was valid.
   };
 
 export default function MemoryCard({
   id,
   highlight,
   highlightDuration = 200,
-  color = Colors.buttonPrimary,
+  color = Colors.buttonSecondary,
   isPressedColor = Colors.headerTint,
+  disable = false,
   maintainClicked = false,
   resetClicked = false,
   onClick
@@ -28,19 +30,21 @@ export default function MemoryCard({
   const [isClicked, setIsClicked] = useState(false);
 
   const handlePressIn = () => {
-    setIsPressed(true); 
+    if (!disable){
+      setIsPressed(true); 
 
-    if (!isClicked){
-      onClick(id);
-      setIsClicked(true);
-    }
+      if (!isClicked){
+        onClick(id);
+        setIsClicked(true);
+      }
+  }
   };
 
   const handlePressOut = () => {
-    setIsPressed(false);
-    if (!maintainClicked) {
-      setTimeout(() => setIsClicked(false), 200);
-    }
+      setIsPressed(false);
+      if (!maintainClicked) {
+        setTimeout(() => setIsClicked(false), 200);
+      }
   };
 
   // Programmatically highlight when highlightExternally changes to true

@@ -10,7 +10,7 @@ export default function MainMenu() {
       <NavigationButton
         text="Sequence Memory"
         path="/sequence-memory"
-        icon={require("../assets/icon.png")}
+        icon={require("../assets/SequenceMemory.png")}
       />
       <NavigationButton text="Number Memory" path="/number-memory" />
       <NavigationButton text="Verbal Memory" path="/verbal-memory" />

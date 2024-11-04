@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image} from "react-native";
+import { View, StyleSheet} from "react-native";
 import { Stack } from "expo-router";
 import NavigationButton from "../components/NavigationButton";
 import { Colors } from "../constants/Constants";
@@ -21,7 +21,7 @@ export default function SequenceMemory() {
                            The length of the pattern increases with each completion.
                            The test is over if you make a mistake."/>
       
-      <NavigationButton text="Start" replace={true} path="/sequence-memory-game"/>
+      <NavigationButton text="Start" replace={true} path="/sequence-memory-game" backgroundColor={Colors.buttonStart}/>
     </View>
   );
 }
