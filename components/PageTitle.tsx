@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text} from 'react-native';
+import { Fonts } from "../constants/Constants";
 
 // Define a type for the props
 type PageTitleProps = {
@@ -17,7 +18,7 @@ type PageTitleProps = {
 
   const styles = StyleSheet.create({
     title: {
-        fontSize: 32,
+        fontSize: Fonts.sizes.large,
         marginBottom: 20,
         marginTop: 20,
         fontWeight: "bold",
