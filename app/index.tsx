@@ -1,12 +1,32 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { View, StyleSheet } from "react-native";
 import NavigationButton from "../components/NavigationButton";
-import { Colors } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import PageTitle from "../components/PageTitle";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function MainMenu() {
+  const [loaded, error] = useFonts({
+    Jaro: require("../assets/fonts/Jaro.ttf"),
+  });
+
+  //Show loading screen until fonts are loaded.
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>MarkMe</Text>
+      <PageTitle text="MarkMe" fontSize={70} />
       <NavigationButton
         text="Sequence Memory"
         path="/sequence-memory"
@@ -28,8 +48,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 32,
+    fontSize: 60,
     marginBottom: 20,
-    fontWeight: "bold",
+    fontFamily: Fonts.family.title,
   },
 });

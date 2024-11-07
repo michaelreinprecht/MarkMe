@@ -1,24 +1,18 @@
 import React from "react";
-import { StyleSheet, Image, ImageSourcePropType,} from 'react-native';
+import { StyleSheet, Image, ImageSourcePropType } from "react-native";
 
 // Define a type for the props
 type GameIconProps = {
-    path: ImageSourcePropType; // image source for the icon
-  };
+  icon: ImageSourcePropType; // image source for the icon
+};
 
-  export default function GameIcon({
-    path
-  }: GameIconProps) {
+export default function GameIcon({ icon: icon }: GameIconProps) {
+  return <Image source={icon} style={styles.image} />;
+}
 
-    return (
-        <Image source={path} style={styles.image}/>
-    )
-  }
-
-  const styles = StyleSheet.create({
-    image: {
-        width: 250,
-        height: 250,
-    }
-  });
-  
+const styles = StyleSheet.create({
+  image: {
+    width: 250,
+    height: 250,
+  },
+});
