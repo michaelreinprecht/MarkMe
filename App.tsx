@@ -1,6 +1,5 @@
 // App.tsx
 import "expo-router/entry";
-import * as Font from "expo-font";
 
 //TODO
 /*
