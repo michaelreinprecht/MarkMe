@@ -15,4 +15,5 @@ add font type constants
 Feedback
 color interactive elements the same
 move game info text from start screen to game screen
+add "highscore updates etc." to main screen (top of main screen)
 */

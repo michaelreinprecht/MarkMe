@@ -1,26 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Stack } from "expo-router";
+import GameStartPage from "../components/GameStartPage";
 
 export default function NumberMemory() {
   return (
-    <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: "Number Memory",
-          headerBackTitle: "Home",
-          headerBackTitleVisible: true,
-        }}
-      />
-      <Text>Number Memory Page</Text>
-    </View>
+    <GameStartPage
+      gametitle="Number memory"
+      icon={require("../assets/SequenceMemory.png")}
+      gameInfoText="Remember a sequence of numbers in the given time. When the time is finished, write them down in the same order."
+      gamePath="/number-memory-game"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

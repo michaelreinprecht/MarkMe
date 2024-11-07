@@ -1,20 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Stack } from "expo-router";
+import GameStartPage from "../components/GameStartPage";
 
 export default function VerbalMemory() {
   return (
-    <View style={styles.container}>
-      <Stack.Screen options={{ title: "Verbal Memory" }} />
-      <Text>Verbal Memory Page</Text>
-    </View>
+    <GameStartPage
+      gametitle="Verbal Memory"
+      icon={require("../assets/SequenceMemory.png")}
+      gameInfoText="You will be shown words one at a time. 
+        If you've seen a word during the test click SEEN, 
+        if it's a new word click NEW."
+      gamePath="/verbal-memory-game"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
