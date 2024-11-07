@@ -10,18 +10,19 @@ const Colors = {
   background: "#A9D6E5",
   darkText: "#37474F",
   lightText: "#FFFFFF",
-  buttonStart: "#FFFF00"
+  buttonStart: "#FFFF00",
 };
 
 const Fonts = {
   family: {
-    regular: "OpenSans-Regular",
-    bold: "OpenSans-Bold",
+    title: "Jaro",
+    button: "Jaro",
   },
   sizes: {
     small: 14,
     medium: 18,
     large: 22,
+    title: 60,
   },
 };
 

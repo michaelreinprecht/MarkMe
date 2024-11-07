@@ -24,19 +24,27 @@ export default function NavigationButton({
   path,
   replace,
   icon,
-  backgroundColor = Colors.buttonPrimary
+  backgroundColor = Colors.buttonPrimary,
 }: NavigationButtonProps) {
   return (
     <View style={styles.buttonContainer}>
       {/* Link overrides style from Touchableopacity */}
-      <Link href={path} asChild replace={replace} style={{backgroundColor:  backgroundColor, justifyContent: icon ? "space-between" : "center"}}> 
+      <Link
+        href={path}
+        asChild
+        replace={replace}
+        style={{
+          backgroundColor: backgroundColor,
+          justifyContent: icon ? "space-between" : "center",
+        }}
+      >
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>{text}</Text>
           {icon && <Image source={icon} style={styles.icon} />}
         </TouchableOpacity>
       </Link>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -62,7 +70,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.darkText,
     fontSize: Fonts.sizes.large,
-    fontFamily: Fonts.family.regular,
-    fontWeight: "bold",
+    fontFamily: Fonts.family.button,
   },
 });
