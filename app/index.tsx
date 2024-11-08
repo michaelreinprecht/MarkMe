@@ -5,6 +5,7 @@ import { Colors, Fonts } from "../constants/Constants";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import PageTitle from "../components/PageTitle";
+import { init } from '../localDB/DBHighscore';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,6 +13,15 @@ export default function MainMenu() {
   const [loaded, error] = useFonts({
     Jaro: require("../assets/fonts/Jaro.ttf"),
   });
+
+  //Initiziale Db, (Creates it and new table if it doesnt exit)
+  useEffect(() => {
+    const setupDatabase = async () => {
+      await init();
+    };
+
+    setupDatabase();
+  }, []);
 
   //Show loading screen until fonts are loaded.
   useEffect(() => {
