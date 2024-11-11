@@ -66,7 +66,7 @@ export default function SequenceMemory() {
         }
       }
 
-      if (isSequenceCorrect && clickedCards.length == sequence.length){
+      if (isSequenceCorrect && clickedCards.length == sequence.length && clickedCards[0] == sequence[0]){
         setInputEnabled(false);
         setLevel(level + 1);
         setClickedCards([]);
