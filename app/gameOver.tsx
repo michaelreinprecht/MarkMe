@@ -32,10 +32,10 @@ export default function GameOver() {
           <PageTitle text={title}/>
           <ReachedLevelIndicator level={parseInt(level)}/>
   
-          <HighScoreDisplay title="Current HighScore" score={currentHighScore} iconleft={require("../assets/Trophy.png")} iconRight={require("../assets/SequenceMemory.png")}/>
+          <HighScoreDisplay title="Current HighScore" score={currentHighScore} iconleft={require("../assets/Trophy.png")} iconRight={require("../assets/GridMemory.png")}/>
           
-          <NavigationButton text="Try again" replace={true} path="/sequence-memory-game" backgroundColor={Colors.buttonStart}/>
-          <NavigationButton text="Home Page" replace={true} path="/" backgroundColor={Colors.buttonStart}/>
+          <NavigationButton text="Try again" replace={true} path="/sequence-memory-game" backgroundColor={Colors.buttonSecondary}/>
+          <NavigationButton text="Home Page" replace={true} path="/" backgroundColor={Colors.buttonSecondary}/>
         </View>
       );
 }

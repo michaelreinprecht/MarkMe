@@ -38,7 +38,7 @@ export default function NavigationButton({
           justifyContent: icon ? "space-between" : "center",
         }}
       >
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} >
           <Text style={styles.buttonText}>{text}</Text>
           {icon && <Image source={icon} style={styles.icon} />}
         </TouchableOpacity>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginRight: 8, // Adds space between icon and text
   },
   buttonText: {
-    color: Colors.darkText,
+    color: Colors.lightText,
     fontSize: Fonts.sizes.large,
     fontFamily: Fonts.family.button,
   },

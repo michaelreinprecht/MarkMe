@@ -6,7 +6,7 @@ export default function SequenceMemory() {
     <>
       <GameStartPage
         gametitle="Sequence Memory"
-        icon={require("../assets/SequenceMemory.png")}
+        icon={require("../assets/GridMemory.png")}
         gameInfoText="Memorize the order in which the buttons light up, then press them sequentially.
                             The length of the pattern increases with each completion.
                             The test is over if you make a mistake."

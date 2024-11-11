@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text} from 'react-native';
-import { Fonts } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
 
 // Define a type for the props
 type GameInfoFieldProps = {
@@ -19,6 +19,7 @@ type GameInfoFieldProps = {
   const styles = StyleSheet.create({
     description: {
         fontSize: Fonts.sizes.medium,
+        color: Colors.lightText,
         marginBottom: 20,
         fontWeight: "bold",
         margin: 20

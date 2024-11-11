@@ -40,12 +40,12 @@ export default function MainMenu() {
       <NavigationButton
         text="Sequence Memory"
         path="/sequence-memory"
-        icon={require("../assets/SequenceMemory.png")}
+        icon={require("../assets/GridMemory.png")}
       />
-      <NavigationButton text="Number Memory" path="/number-memory" />
-      <NavigationButton text="Verbal Memory" path="/verbal-memory" />
-      <NavigationButton text="Visual Memory" path="/visual-memory" />
-      <NavigationButton text="Highscores" path="/highscores" />
+      <NavigationButton text="Number Memory" path="/number-memory" icon={require("../assets/NumberMemory.png")}/>
+      <NavigationButton text="Verbal Memory" path="/verbal-memory" icon={require("../assets/VerbalMemory.png")}/>
+      <NavigationButton text="Visual Memory" path="/visual-memory" icon={require("../assets/GridMemory.png")}/>
+      <NavigationButton text="Highscores" path="/highscores" icon={require("../assets/HighScore.png")}/>
     </View>
   );
 }
@@ -54,12 +54,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    justifyContent: "center",
     alignItems: "center",
-  },
-  title: {
-    fontSize: 60,
-    marginBottom: 20,
-    fontFamily: Fonts.family.title,
   },
 });

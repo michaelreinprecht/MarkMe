@@ -2,15 +2,14 @@
 // By reusing those constants, we can ensure that the app has a consistent look and feel.
 
 const Colors = {
-  headerBackground: "#f4511e",
-  headerTint: "#FFFFFF",
-  buttonPrimary: "#e6ffff",
-  buttonSecondary: "#1f9ae0",
+  headerTint: "#f4511e",
+  buttonPrimary: "#00000080",
+  buttonSecondary: "#1F5B0C",
+  buttonLight: "#FFFFFF",
   buttonBorder: "#B0BEC5",
-  background: "#A9D6E5",
+  background: "#0A1A43",
   darkText: "#37474F",
   lightText: "#FFFFFF",
-  buttonStart: "#FFFF00",
 };
 
 const Fonts = {

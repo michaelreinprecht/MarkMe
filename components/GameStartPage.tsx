@@ -35,7 +35,7 @@ export default function GameStartPage({
           text="Start"
           replace={true}
           path={gamePath}
-          backgroundColor={Colors.buttonStart}
+          backgroundColor={Colors.buttonSecondary}
         />
       </View>
     </View>
@@ -45,6 +45,7 @@ export default function GameStartPage({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
     backgroundColor: Colors.background,
     alignItems: "center", // Center horizontally
     justifyContent: "center", // Center vertically

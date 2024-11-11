@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: Fonts.sizes.large,
-    fontFamily: Fonts.family.regular,
+    fontFamily: Fonts.family.title,
+    color: Colors.lightText,
     fontWeight: "bold",
     alignSelf: "center",
     marginBottom: 5,
@@ -62,9 +63,9 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   score: {
-    color: Colors.darkText,
+    color: Colors.lightText,
     fontSize: Fonts.sizes.large,
-    fontFamily: Fonts.family.regular,
+    fontFamily: Fonts.family.button,
     fontWeight: "bold",
   },
 });

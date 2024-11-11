@@ -5,7 +5,7 @@ export default function NumberMemory() {
   return (
     <GameStartPage
       gametitle="Number memory"
-      icon={require("../assets/SequenceMemory.png")}
+      icon={require("../assets/NumberMemory.png")}
       gameInfoText="Remember a sequence of numbers in the given time. When the time is finished, write them down in the same order."
       gamePath="/number-memory-game"
     />

@@ -39,7 +39,7 @@ export default function SequenceMemory() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       for (let i = 0; i < sequence.length; i++) {
         setHighlightedCards([sequence[i]]); // Highlight current card
-        await new Promise(resolve => setTimeout(resolve, highlightDuration));
+        await new Promise(resolve => setTimeout(resolve, highlightDuration + 50));
       }
       setHighlightedCards([]);
       setInputEnabled(true);
@@ -170,7 +170,7 @@ export default function SequenceMemory() {
           />
         </View>
 
-        {!inputEnabled && <Text>Please wait for the sequence to finish</Text>}
+        {!inputEnabled && <Text style={styles.info}>Please wait for the sequence to finish</Text>}
       </View>
     );
   }
@@ -188,5 +188,8 @@ export default function SequenceMemory() {
         marginBottom: 10,
         width: '90%'
       },
+    info: {
+      color: Colors.lightText
+    }
   });
   

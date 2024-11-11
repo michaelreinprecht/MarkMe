@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text} from 'react-native';
-import { Fonts } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
 
 // Define a type for the props
 type LevelIndicatorProps = {
@@ -19,6 +19,7 @@ type LevelIndicatorProps = {
   const styles = StyleSheet.create({
     levelDisplay: {
       fontSize: Fonts.sizes.medium,
+      color: Colors.lightText,
       marginBottom: Fonts.sizes.medium,
       fontWeight: "bold"
     }

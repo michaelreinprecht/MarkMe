@@ -6,7 +6,7 @@ export default function Layout() {
     <Stack
       screenOptions={{
         title: "My home",
-        headerStyle: { backgroundColor: Colors.headerBackground },
+        headerStyle: { backgroundColor: Colors.background },
         headerTintColor: Colors.headerTint,
         headerTitleStyle: { fontWeight: "bold" },
       }}
