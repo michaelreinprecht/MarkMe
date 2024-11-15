@@ -59,7 +59,7 @@ export default function VisualMemory() {
   }, [pattern]);
 
   const handleCardClick = (id: number) => {
-    if (inputEnabled) {
+    if (inputEnabled && !clickedCards.includes(id)) {
       setClickedCards([...clickedCards, id]);
     }
   };
