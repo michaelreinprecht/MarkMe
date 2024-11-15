@@ -5,6 +5,7 @@ import { Colors } from "../constants/Constants";
 import MemoryCard from "../components/MemoryCard";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
+import MemoryGrid from "../components/MemoryGrid";
 
 export default function VisualMemory() {
   const [level, setLevel] = useState(0);
@@ -64,26 +65,24 @@ export default function VisualMemory() {
     }
   };
 
-  useEffect(() => {
-    if (pattern.length > 0) {
-      for (var i = 0; i < clickedCards.length; i++) {
-        //Check if the clicked card is in the pattern
-        if (!pattern.includes(clickedCards[i])) {
-          setIsPatternCorrect(false);
-          break;
-        }
-      }
-
-      //Go to new level ...
-      if (isPatternCorrect && clickedCards.length == pattern.length) {
-        setInputEnabled(false);
-        setLevel(level + 1);
-        setClickedCards([]);
+  const checkPattern = () => {
+    for (var i = 0; i < clickedCards.length; i++) {
+      if (clickedCards[i] != pattern[i]) {
+        setIsPatternCorrect(false);
+        break;
       }
     }
-  }, [clickedCards]);
+  };
 
-  useEffect(() => {
+  const checkForLevelComplete = () => {
+    if (isPatternCorrect && clickedCards.length == pattern.length) {
+      setInputEnabled(false);
+      setLevel(level + 1);
+      setClickedCards([]);
+    }
+  };
+
+  const checkGameOver = () => {
     if (!isPatternCorrect) {
       setInputEnabled(false);
       setIsPatternCorrect(true);
@@ -91,8 +90,21 @@ export default function VisualMemory() {
       setClickedCards([]);
       setPattern([]);
       setLevel(0);
-      router.replace(`/gameOver?title=${title}&level=${level}`);
+      router.replace(
+        `/gameOver?title=${title}&level=${level}&tryAgainPath=/visual-memory-game`
+      );
     }
+  };
+
+  useEffect(() => {
+    if (pattern.length > 0) {
+      checkPattern();
+      checkForLevelComplete();
+    }
+  }, [clickedCards]);
+
+  useEffect(() => {
+    checkGameOver();
   }, [isPatternCorrect]);
 
   return (
@@ -100,27 +112,13 @@ export default function VisualMemory() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
-      <View style={styles.gamePad}>
-        {Array.from({ length: gridSize }, (_, rowIndex) => (
-          <View key={rowIndex} style={styles.row}>
-            {Array.from({ length: gridSize }, (_, colIndex) => {
-              const cardIndex = rowIndex * gridSize + colIndex; // Calculate unique index for each card
-              return (
-                <MemoryCard
-                  key={cardIndex}
-                  id={cardIndex}
-                  isClicked={
-                    clickedCards.includes(cardIndex) ||
-                    highlightedCards.includes(cardIndex)
-                  }
-                  disable={!inputEnabled}
-                  onClick={() => handleCardClick(cardIndex)}
-                />
-              );
-            })}
-          </View>
-        ))}
-      </View>
+      <MemoryGrid
+        clickedCards={clickedCards}
+        highlightedCards={highlightedCards}
+        gridSize={gridSize}
+        onCardClick={handleCardClick}
+        inputEnabled={inputEnabled}
+      />
 
       {!inputEnabled && (
         <Text style={styles.info}>Please wait for the sequence to finish</Text>

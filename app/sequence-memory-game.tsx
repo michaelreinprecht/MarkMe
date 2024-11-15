@@ -5,6 +5,7 @@ import { Colors } from "../constants/Constants";
 import MemoryCard from "../components/MemoryCard";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
+import MemoryGrid from "../components/MemoryGrid";
 
 export default function SequenceMemory() {
   const [level, setLevel] = useState(0);
@@ -46,7 +47,6 @@ export default function SequenceMemory() {
         setHighlightedCards([]);
         await new Promise((resolve) => setTimeout(resolve, 50));
       }
-      //setHighlightedCards([]); -> nichtmehr nötig
       setInputEnabled(true);
     };
 
@@ -61,28 +61,28 @@ export default function SequenceMemory() {
     }
   };
 
-  useEffect(() => {
-    if (sequence.length > 0) {
-      for (var i = 0; i < clickedCards.length; i++) {
-        if (clickedCards[i] != sequence[i]) {
-          setIsSequenceCorrect(false);
-          break;
-        }
-      }
-
-      if (
-        isSequenceCorrect &&
-        clickedCards.length == sequence.length &&
-        clickedCards[0] == sequence[0]
-      ) {
-        setInputEnabled(false);
-        setLevel(level + 1);
-        setClickedCards([]);
+  const checkSequence = () => {
+    for (var i = 0; i < clickedCards.length; i++) {
+      if (clickedCards[i] != sequence[i]) {
+        setIsSequenceCorrect(false);
+        break;
       }
     }
-  }, [clickedCards]);
+  };
 
-  useEffect(() => {
+  const checkForLevelComplete = () => {
+    if (
+      isSequenceCorrect &&
+      clickedCards.length == sequence.length &&
+      clickedCards[0] == sequence[0]
+    ) {
+      setInputEnabled(false);
+      setLevel(level + 1);
+      setClickedCards([]);
+    }
+  };
+
+  const checkGameOver = () => {
     if (!isSequenceCorrect) {
       setInputEnabled(false);
       setIsSequenceCorrect(true);
@@ -90,8 +90,21 @@ export default function SequenceMemory() {
       setClickedCards([]);
       setSequence([]);
       setLevel(0);
-      router.replace(`/gameOver?title=${title}&level=${level}`);
+      router.replace(
+        `/gameOver?title=${title}&level=${level}&tryAgainPath=/sequence-memory-game`
+      );
     }
+  };
+
+  useEffect(() => {
+    if (sequence.length > 0) {
+      checkSequence();
+      checkForLevelComplete();
+    }
+  }, [clickedCards]);
+
+  useEffect(() => {
+    checkGameOver();
   }, [isSequenceCorrect]);
 
   return (
@@ -99,24 +112,12 @@ export default function SequenceMemory() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
-      <View style={styles.gamePad}>
-        {Array.from({ length: gridSize }, (_, rowIndex) => (
-          <View key={rowIndex} style={styles.row}>
-            {Array.from({ length: gridSize }, (_, colIndex) => {
-              const cardIndex = rowIndex * gridSize + colIndex; // Calculate unique index for each card
-              return (
-                <MemoryCard
-                  key={cardIndex}
-                  id={cardIndex}
-                  isClicked={highlightedCards.includes(cardIndex)}
-                  disable={!inputEnabled}
-                  onClick={() => handleCardClick(cardIndex)}
-                />
-              );
-            })}
-          </View>
-        ))}
-      </View>
+      <MemoryGrid
+        highlightedCards={highlightedCards}
+        gridSize={gridSize}
+        onCardClick={handleCardClick}
+        inputEnabled={inputEnabled}
+      />
 
       {!inputEnabled && (
         <Text style={styles.info}>Please wait for the sequence to finish</Text>
