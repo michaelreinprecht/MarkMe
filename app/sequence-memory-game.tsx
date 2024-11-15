@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { Colors } from "../constants/Constants";
-import MemoryCard from "../components/MemoryCard";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import MemoryGrid from "../components/MemoryGrid";
