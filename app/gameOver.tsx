@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { Colors } from "../constants/Constants";
+import { Colors, GameModes } from "../constants/Constants";
 import PageTitle from "../components/PageTitle";
 import ReachedLevelIndicator from "../components/ReachedLevelIndicator";
 import HighScoreDisplay from "../components/HighScoreDisplay";
@@ -9,7 +9,7 @@ import NavigationButton from "../components/NavigationButton";
 import { getHighScore, saveHighScore } from "../localDB/DBHighscore";
 
 export default function GameOver() {
-  const { title, level, tryAgainPath } = useLocalSearchParams<{
+  const { title, level } = useLocalSearchParams<{
     title: string;
     level: string;
     tryAgainPath: string;
@@ -30,6 +30,9 @@ export default function GameOver() {
     interactWithDatabase();
   }, []);
 
+  // Retrieve game mode data using the title
+  const gameMode = GameModes[title];
+
   return (
     <View style={styles.container}>
       <PageTitle text={title} />
@@ -38,13 +41,13 @@ export default function GameOver() {
       <HighScoreDisplay
         title="Current HighScore"
         score={currentHighScore}
-        iconRight={require("../assets/GridMemory.png")}
+        iconRight={gameMode.icon}
       />
 
       <NavigationButton
         text="Try again"
         replace={true}
-        path={tryAgainPath}
+        path={gameMode.gamePath}
         backgroundColor={Colors.buttonSecondary}
       />
       <NavigationButton

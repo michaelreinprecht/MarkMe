@@ -90,9 +90,7 @@ export default function VisualMemory() {
       setClickedCards([]);
       setPattern([]);
       setLevel(0);
-      router.replace(
-        `/gameOver?title=${title}&level=${level}&tryAgainPath=/visual-memory-game`
-      );
+      router.replace(`/gameOver?title=${title}&level=${level}`);
     }
   };
 

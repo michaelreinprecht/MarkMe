@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image,
   ImageSourcePropType,
 } from "react-native";
@@ -17,7 +16,7 @@ type HighScoreDisplayProps = {
   iconRight: ImageSourcePropType;
 };
 
-export default function NavigationButton({
+export default function HighScoreDisplay({
   title,
   score,
   iconleft = require("../assets/Trophy.png"),
@@ -37,17 +36,22 @@ export default function NavigationButton({
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%",
+    width: "90%", // Use a percentage to make sure the width adapts to the parent
+    minWidth: 250, // Optional: Ensures a minimum width
     marginVertical: 10,
-    display: "flex",
     flexDirection: "column",
+    alignItems: "center", // This centers the content inside the container
   },
   scoreView: {
     backgroundColor: Colors.buttonPrimary,
-    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "black",
+    width: "100%", // Make sure the score view takes up the full width
   },
   title: {
     fontSize: Fonts.sizes.large,
