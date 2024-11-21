@@ -1,6 +1,11 @@
 // This file holds constants for colors or fonts that are used throughout the app.
 // By reusing those constants, we can ensure that the app has a consistent look and feel.
 
+import SequenceMemoryIcon from "../assets/GridMemory.png";
+import NumberMemoryIcon from "../assets/NumberMemory.png";
+import VerbalMemoryIcon from "../assets/VerbalMemory.png";
+import VisualMemoryIcon from "../assets/GridMemory.png";
+
 const Colors = {
   headerTint: "#f4511e",
   buttonPrimary: "#00000080",
@@ -25,4 +30,30 @@ const Fonts = {
   },
 };
 
-export { Colors, Fonts };
+const GameModes: Record<
+  string,
+  { startPath: string; gamePath: string; icon: any }
+> = {
+  "Sequence Memory": {
+    startPath: "/sequence-memory",
+    gamePath: "/sequence-memory-game",
+    icon: SequenceMemoryIcon,
+  },
+  "Number Memory": {
+    startPath: "/number-memory",
+    gamePath: "/number-memory-game",
+    icon: NumberMemoryIcon,
+  },
+  "Verbal Memory": {
+    startPath: "/verbal-memory",
+    gamePath: "/verbal-memory-game",
+    icon: VerbalMemoryIcon,
+  },
+  "Visual Memory": {
+    startPath: "/visual-memory",
+    gamePath: "/visual-memory-game",
+    icon: VisualMemoryIcon,
+  },
+};
+
+export { Colors, Fonts, GameModes };

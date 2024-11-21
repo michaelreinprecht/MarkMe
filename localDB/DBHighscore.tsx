@@ -1,7 +1,7 @@
 //https://docs.expo.dev/versions/latest/sdk/sqlite/
-import * as SQLite from 'expo-sqlite';
+import * as SQLite from "expo-sqlite";
 
-type HighScore = {
+export type HighScore = {
   id: number;
   mode: string;
   score: number;
@@ -9,37 +9,59 @@ type HighScore = {
   isHighScore: boolean;
 };
 
-let db : SQLite.SQLiteDatabase;
+let db: SQLite.SQLiteDatabase;
 
 export const init = async () => {
-  db = await SQLite.openDatabaseAsync('MarkMe.db');
+  db = await SQLite.openDatabaseAsync("MarkMe.db");
 
   await db.runAsync(
-      `CREATE TABLE IF NOT EXISTS highscores (
+    `CREATE TABLE IF NOT EXISTS highscores (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         mode TEXT,
         score INTEGER,
         date TEXT,
         isHighScore INTEGER
       );`
-    );
+  );
+};
+
+export const getAllHighScores = async (): Promise<HighScore[]> => {
+  if (!db) {
+    throw new Error("Database not initialized");
+  }
+
+  const statement = await db.prepareAsync(
+    "SELECT * FROM highscores WHERE isHighScore = 1"
+  );
+
+  let highScores: HighScore[] = [];
+  try {
+    const result = await statement.executeAsync<HighScore>();
+    highScores = await result.getAllAsync(); // Fetch all results as an array
+  } finally {
+    await statement.finalizeAsync();
+  }
+
+  return highScores;
 };
 
 export const saveHighScore = async (mode: string, score: number) => {
   if (!db) {
-    throw new Error('Database not initialized');
+    throw new Error("Database not initialized");
   }
 
   const date = new Date().toISOString();
 
-  const statement = await db.prepareAsync("SELECT * FROM highscores WHERE mode = $mode AND isHighScore = 1 LIMIT 1");
+  const statement = await db.prepareAsync(
+    "SELECT * FROM highscores WHERE mode = $mode AND isHighScore = 1 LIMIT 1"
+  );
   let data: HighScore | null;
   try {
-      const result = await statement.executeAsync<HighScore>({
-        $mode: mode,
-      });
+    const result = await statement.executeAsync<HighScore>({
+      $mode: mode,
+    });
 
-      data = await result.getFirstAsync();
+    data = await result.getFirstAsync();
   } finally {
     await statement.finalizeAsync();
   }
@@ -57,7 +79,7 @@ export const saveHighScore = async (mode: string, score: number) => {
       } finally {
         await updateStmt.finalizeAsync();
       }
-    } 
+    }
 
     const insertStmt = await db.prepareAsync(
       "INSERT INTO highscores (mode, score, date, isHighScore) VALUES ($mode, $score, $date, $isHighScore)"
@@ -71,20 +93,22 @@ export const saveHighScore = async (mode: string, score: number) => {
       });
     } finally {
       await insertStmt.finalizeAsync();
-    } 
+    }
   });
 };
 
 export const getHighScore = async (mode: string) => {
-  const statement = await db.prepareAsync("SELECT * FROM highscores WHERE mode = $mode AND isHighScore = 1 LIMIT 1",);
+  const statement = await db.prepareAsync(
+    "SELECT * FROM highscores WHERE mode = $mode AND isHighScore = 1 LIMIT 1"
+  );
 
   let data: HighScore | null;
   try {
-      const result = await statement.executeAsync<HighScore>({
-        $mode: mode,
-      });
+    const result = await statement.executeAsync<HighScore>({
+      $mode: mode,
+    });
 
-      data = await result.getFirstAsync();
+    data = await result.getFirstAsync();
   } finally {
     await statement.finalizeAsync();
   }

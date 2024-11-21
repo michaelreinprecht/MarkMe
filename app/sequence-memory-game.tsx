@@ -88,9 +88,7 @@ export default function SequenceMemory() {
       setClickedCards([]);
       setSequence([]);
       setLevel(0);
-      router.replace(
-        `/gameOver?title=${title}&level=${level}&tryAgainPath=/sequence-memory-game`
-      );
+      router.replace(`/gameOver?title=${title}&level=${level}`);
     }
   };
 
