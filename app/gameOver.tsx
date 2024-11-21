@@ -38,7 +38,6 @@ export default function GameOver() {
       <HighScoreDisplay
         title="Current HighScore"
         score={currentHighScore}
-        iconleft={require("../assets/Trophy.png")}
         iconRight={require("../assets/GridMemory.png")}
       />
 

@@ -11,28 +11,28 @@ import { Colors, Fonts } from "../constants/Constants";
 
 // Define a type for the props
 type HighScoreDisplayProps = {
-    title: string;
-    score: number;
-    iconleft: ImageSourcePropType;
-    iconRight: ImageSourcePropType;
+  title: string;
+  score: number;
+  iconleft?: ImageSourcePropType;
+  iconRight: ImageSourcePropType;
 };
 
 export default function NavigationButton({
-    title,
-    score,
-    iconleft,
-    iconRight,
+  title,
+  score,
+  iconleft = require("../assets/Trophy.png"),
+  iconRight,
 }: HighScoreDisplayProps) {
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.scoreView}>
-            {iconleft && <Image source={iconleft} style={styles.icon} />}
-            <Text style={styles.score}>{score}</Text>
-            {iconRight && <Image source={iconRight} style={styles.icon} />}
-        </View>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.scoreView}>
+        {iconleft && <Image source={iconleft} style={styles.icon} />}
+        <Text style={styles.score}>{score}</Text>
+        {iconRight && <Image source={iconRight} style={styles.icon} />}
+      </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     fontSize: Fonts.sizes.large,

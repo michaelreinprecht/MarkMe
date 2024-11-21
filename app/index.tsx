@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import NavigationButton from "../components/NavigationButton";
-import { Colors, Fonts } from "../constants/Constants";
+import { Colors, GameModes } from "../constants/Constants";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import PageTitle from "../components/PageTitle";
-import { init } from '../localDB/DBHighscore';
+import { init } from "../localDB/DBHighscore";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function MainMenu() {
   const [loaded, error] = useFonts({
+    // Load fonts
     Jaro: require("../assets/fonts/Jaro.ttf"),
   });
 
-  //Initiziale Db, (Creates it and new table if it doesnt exit)
+  // Initialize DB (creates it and new table if it doesn't exist)
   useEffect(() => {
     const setupDatabase = async () => {
       await init();
@@ -23,7 +24,7 @@ export default function MainMenu() {
     setupDatabase();
   }, []);
 
-  //Show loading screen until fonts are loaded.
+  // Show loading screen until fonts are loaded
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
@@ -37,15 +38,23 @@ export default function MainMenu() {
   return (
     <View style={styles.container}>
       <PageTitle text="MarkMe" fontSize={70} />
+
+      {/* Dynamically render buttons using GameModes */}
+      {Object.entries(GameModes).map(([title, { startPath, icon }]) => (
+        <NavigationButton
+          key={title} // Unique key for each button
+          text={title}
+          path={startPath}
+          icon={icon}
+        />
+      ))}
+
+      {/* Add Highscores button */}
       <NavigationButton
-        text="Sequence Memory"
-        path="/sequence-memory"
-        icon={require("../assets/GridMemory.png")}
+        text="Highscores"
+        path="/highscores"
+        icon={require("../assets/HighScore.png")}
       />
-      <NavigationButton text="Number Memory" path="/number-memory" icon={require("../assets/NumberMemory.png")}/>
-      <NavigationButton text="Verbal Memory" path="/verbal-memory" icon={require("../assets/VerbalMemory.png")}/>
-      <NavigationButton text="Visual Memory" path="/visual-memory" icon={require("../assets/GridMemory.png")}/>
-      <NavigationButton text="Highscores" path="/highscores" icon={require("../assets/HighScore.png")}/>
     </View>
   );
 }
