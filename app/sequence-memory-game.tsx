@@ -61,24 +61,23 @@ export default function SequenceMemory() {
   };
 
   const checkSequence = () => {
+    var sequenceCorrect = true;
     for (var i = 0; i < clickedCards.length; i++) {
       if (clickedCards[i] != sequence[i]) {
         setIsSequenceCorrect(false);
+        sequenceCorrect = false;
         break;
       }
     }
-  };
 
-  const checkForLevelComplete = () => {
-    if (
-      isSequenceCorrect &&
-      clickedCards.length == sequence.length &&
-      clickedCards[0] == sequence[0]
-    ) {
-      setInputEnabled(false);
-      setLevel(level + 1);
-      setClickedCards([]);
-    }
+    if (sequenceCorrect && 
+        clickedCards.length == sequence.length &&
+        clickedCards[0] == sequence[0]
+      ) {
+          setInputEnabled(false);
+          setLevel(level + 1);
+          setClickedCards([]);
+        }
   };
 
   const checkGameOver = () => {
@@ -98,7 +97,6 @@ export default function SequenceMemory() {
   useEffect(() => {
     if (sequence.length > 0) {
       checkSequence();
-      checkForLevelComplete();
     }
   }, [clickedCards]);
 
