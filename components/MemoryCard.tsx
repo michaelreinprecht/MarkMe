@@ -24,12 +24,14 @@ export default function MemoryCard({
   const handlePressIn = () => {
     if (!disable) {
       setIsPressed(true);
-      onClick(id);
     }
   };
 
   const handlePressOut = () => {
-    setIsPressed(false);
+    if (!disable){
+      setIsPressed(false);
+      onClick(id);
+    }
   };
 
   return (
