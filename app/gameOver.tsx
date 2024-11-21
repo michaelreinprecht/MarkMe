@@ -12,7 +12,6 @@ export default function GameOver() {
   const { title, level } = useLocalSearchParams<{
     title: string;
     level: string;
-    tryAgainPath: string;
   }>();
   const [currentHighScore, setCurrentHighScore] = useState<number>(0);
 
