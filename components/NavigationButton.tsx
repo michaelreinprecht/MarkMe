@@ -38,7 +38,7 @@ export default function NavigationButton({
           justifyContent: icon ? "space-between" : "center",
         }}
       >
-        <TouchableOpacity style={styles.button} >
+        <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>{text}</Text>
           {icon && <Image source={icon} style={styles.icon} />}
         </TouchableOpacity>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: Colors.buttonBorder,
-    minHeight: 50,
+    minHeight: 80,
   },
   icon: {
     width: 40,
