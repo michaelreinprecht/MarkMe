@@ -32,6 +32,9 @@
         }
       ],
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "newArchEnabled": true
+    }
   }
 }

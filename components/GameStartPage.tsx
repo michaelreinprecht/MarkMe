@@ -48,12 +48,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: Colors.background,
     alignItems: "center", // Center horizontally
-    justifyContent: "center", // Center vertically
+    justifyContent: "flex-start", // Center vertically
   },
   content: {
     alignItems: "center", // Center content horizontally
     justifyContent: "space-evenly", // Spread out the elements vertically
-    gap: 20, // Gap between elements (available in React Native 0.71+)
-    paddingVertical: 40, // Additional padding around content
+    gap: 5, // Gap between elements (available in React Native 0.71+)
   },
 });

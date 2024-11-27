@@ -20,7 +20,6 @@ type GameInfoFieldProps = {
     description: {
         fontSize: Fonts.sizes.medium,
         color: Colors.lightText,
-        marginBottom: 20,
         fontWeight: "bold",
         margin: 20
       }

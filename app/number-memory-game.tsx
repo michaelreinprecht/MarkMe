@@ -6,7 +6,7 @@ import PageTitle from "../components/PageTitle";
 import { Colors } from "../constants/Constants";
 
 export default function NumberMemory() {
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
   const [sequence, setSequence] = useState<string>(""); 
   const [userInput, setUserInput] = useState<string>(""); 
   const [isInputEnabled, setIsInputEnabled] = useState(false); 
