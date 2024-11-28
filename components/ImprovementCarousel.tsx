@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Dimensions } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import ImprovementDisplay from "./ImprovementDisplay";
 import { GameModes } from "../constants/Constants";
@@ -27,6 +27,8 @@ const mockHighScores: PlayerImprovement[] = [
     description: "3 Day Streak reached, keep improving!",
   },
 ];
+
+const { width: screenWidth } = Dimensions.get("window");
 
 // Create your renderItem function (for the carousel)
 const renderItem = ({ item }: { item: PlayerImprovement }) => (
@@ -59,7 +61,7 @@ export default function ImprovementCarousel() {
         loop={true}
         pagingEnabled={true}
         snapEnabled={true}
-        width={430}
+        width={screenWidth}
         renderItem={renderItem}
       />
     </View>
