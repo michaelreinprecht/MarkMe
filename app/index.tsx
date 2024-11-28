@@ -38,13 +38,17 @@ export default function MainMenu() {
 
   return (
     <View style={styles.container}>
-      <PageTitle text="MarkMe" fontSize={70} />
+      <View style={{ flex: 2 }}>
+        <PageTitle text="MarkMe" fontSize={70} />
+      </View>
 
       {/* Use the ImprovementCarousel component */}
-      <ImprovementCarousel />
+      <View style={{ flex: 2 }}>
+        <ImprovementCarousel />
+      </View>
 
       {/* Dynamically render buttons using GameModes */}
-      <View style={styles.buttonContainer}>
+      <View style={styles.gameButtons}>
         {Object.entries(GameModes).map(([title, { startPath, icon }]) => (
           <NavigationButton
             key={title} // Unique key for each button
@@ -53,15 +57,22 @@ export default function MainMenu() {
             icon={icon}
           />
         ))}
+      </View>
 
-        <View style={styles.spacer} />
-        {/* Add Highscores button */}
+      {/* Add Highscores button */}
+      <View
+        style={{
+          flex: 2.5,
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <NavigationButton
           text="Highscores"
           path="/highscores"
           icon={require("../assets/HighScore.png")}
         />
-        <View style={styles.spacer} />
       </View>
     </View>
   );
@@ -74,15 +85,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start", // This ensures the content is aligned at the top
     alignItems: "center",
     paddingTop: 10, // Add a small amount of padding to the top if needed
+    gap: 10,
   },
-  buttonContainer: {
-    marginTop: 20,
-    flexGrow: 1, // Ensures the buttons take up remaining space
-    justifyContent: "space-evenly", // Aligns buttons at the top of the remaining space
+  gameButtons: {
+    flex: 8,
+    gap: 10,
     width: "100%",
     alignItems: "center", // Keep buttons centered horizontally
-  },
-  spacer: {
-    height: 20,
+    justifyContent: "space-evenly", // Keep buttons centered vertically
   },
 });

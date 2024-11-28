@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { Colors, Fonts } from "../constants/Constants";
+import { View } from "react-native";
 
 // Define a type for the props
 type PageTitleProps = {
@@ -26,6 +27,6 @@ const styles = StyleSheet.create({
     fontSize: Fonts.sizes.large,
     marginBottom: 20,
     fontFamily: Fonts.family.title,
-    color: Colors.lightText
+    color: Colors.lightText,
   },
 });

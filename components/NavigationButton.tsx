@@ -49,7 +49,6 @@ export default function NavigationButton({
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    marginVertical: 2,
     width: "80%",
   },
   button: {
@@ -60,8 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: Colors.buttonBorder,
-    minHeight: "14%",
-    maxHeight: 90,
+    minHeight: "20%",
   },
   icon: {
     width: 40,
