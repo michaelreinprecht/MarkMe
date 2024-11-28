@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: "center", // Center content horizontally
-    justifyContent: "space-evenly", // Spread out the elements vertically
+    justifyContent: "center",
     flexGrow: 1,
-    gap: 5, // Gap between elements (available in React Native 0.71+)
+    gap: 10, // Gap between elements (available in React Native 0.71+)
   },
 });
