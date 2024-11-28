@@ -6,26 +6,18 @@ This page includes the actual implementation for the number memory game (includi
 */
 
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import {View,Text,StyleSheet,TextInput,Button,KeyboardAvoidingView,Platform, TouchableOpacity} from "react-native";
 import { useRouter } from "expo-router";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import { Colors, Fonts } from "../constants/Constants";
 
 export default function NumberMemory() {
-  const [level, setLevel] = useState(1);
-  const [sequence, setSequence] = useState<string>("");
-  const [userInput, setUserInput] = useState<string>("");
-  const [isInputEnabled, setIsInputEnabled] = useState(false);
-  const [displayNumber, setDisplayNumber] = useState(true);
+  const [level, setLevel] = useState(0);
+  const [sequence, setSequence] = useState<string>(""); 
+  const [userInput, setUserInput] = useState<string>(""); 
+  const [isInputEnabled, setIsInputEnabled] = useState(false); 
+  const [displayNumber, setDisplayNumber] = useState(true); 
   const router = useRouter();
   const title = "Number Memory";
 
@@ -57,7 +49,7 @@ export default function NumberMemory() {
       setIsInputEnabled(true); // Enable input after the number disappears
     }, displayTime);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); 
   }, [level]);
 
   const handleSubmit = () => {
@@ -152,34 +144,4 @@ const styles = StyleSheet.create({
       textTransform: "uppercase",
       letterSpacing: 1,
     },
-  container: {
-    backgroundColor: Colors.background,
-    flex: 1,
-    alignItems: "center",
-  },
-  gameArea: {
-    alignItems: "center",
-    marginTop: 20,
-  },
-  numberDisplay: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "white", // Changed to white
-    marginBottom: 20,
-  },
-  infoText: {
-    color: Colors.lightText, // Changed to white
-    marginBottom: 20,
-  },
-  input: {
-    borderColor: "white", // Changed to white
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    width: "80%",
-    fontSize: 18,
-    textAlign: "center",
-    marginBottom: 20,
-    color: "white", // Changed to white
-  },
 });
