@@ -1,6 +1,7 @@
 /*
 
 This page includes the actual implementation for the sequence memory game (including the game logic).
+(This page flickers on the IOS device of one teammember for some reason, we're not sure why yet)
 
 */
 
