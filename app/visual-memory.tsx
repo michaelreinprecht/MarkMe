@@ -1,3 +1,9 @@
+/*
+
+Defines the Parameters needed for the GameStartPage of VisualMemory.
+
+*/
+
 import React from "react";
 import GameStartPage from "../components/GameStartPage";
 

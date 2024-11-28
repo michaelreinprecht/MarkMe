@@ -1,19 +1,17 @@
-import React from "react";
-import {
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-  Dimensions,
-} from "react-native";
+/*
 
-// Define a type for the props
+Component used for displaying the GameIcon in the GameStart Page.
+
+*/
+
+import React from "react";
+import { Image, ImageSourcePropType } from "react-native";
+
 type GameIconProps = {
   icon: ImageSourcePropType; // image source for the icon
 };
 
 export default function GameIcon({ icon: icon }: GameIconProps) {
-  //const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-
   return (
     <Image
       source={icon}

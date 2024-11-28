@@ -1,3 +1,11 @@
+/*
+
+A gameover Page which can be used for every game in the App. Only need the title and the level which has been reached in the
+game as parameters. The page will display the title, the reached level, the current highscore and two buttons to either 
+try again or go back to the home page.
+
+*/
+
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { useLocalSearchParams } from "expo-router";

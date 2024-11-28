@@ -1,3 +1,14 @@
+/*
+
+A component for displaying a singular highscore. This component is used in the HighscoreScreen.tsx.
+Needs the following properties:
+- title: The title of the highscore
+- score: The score of the highscore
+- iconleft: The icon on the left side of the score
+- iconRight: The icon on the right side of the score
+
+*/
+
 import React from "react";
 import {
   View,
@@ -36,11 +47,11 @@ export default function HighScoreDisplay({
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%", // Use a percentage to make sure the width adapts to the parent
-    minWidth: 250, // Optional: Ensures a minimum width
+    width: "90%",
+    minWidth: 250,
     marginVertical: 10,
     flexDirection: "column",
-    alignItems: "center", // This centers the content inside the container
+    alignItems: "center",
   },
   scoreView: {
     backgroundColor: Colors.buttonPrimary,
@@ -51,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "black",
-    width: "100%", // Make sure the score view takes up the full width
+    width: "100%",
   },
   title: {
     fontSize: Fonts.sizes.large,

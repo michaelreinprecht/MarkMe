@@ -1,3 +1,9 @@
+/*
+
+This page includes the actual implementation for the sequence memory game (including the game logic).
+
+*/
+
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
@@ -70,14 +76,15 @@ export default function SequenceMemory() {
       }
     }
 
-    if (sequenceCorrect && 
-        clickedCards.length == sequence.length &&
-        clickedCards[0] == sequence[0]
-      ) {
-          setInputEnabled(false);
-          setLevel(level + 1);
-          setClickedCards([]);
-        }
+    if (
+      sequenceCorrect &&
+      clickedCards.length == sequence.length &&
+      clickedCards[0] == sequence[0]
+    ) {
+      setInputEnabled(false);
+      setLevel(level + 1);
+      setClickedCards([]);
+    }
   };
 
   const checkGameOver = () => {

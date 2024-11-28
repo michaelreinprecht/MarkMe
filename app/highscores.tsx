@@ -1,4 +1,13 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+/*
+
+This file contains the HighscorePage component which displays the high scores for each game mode. 
+The high scores are fetched from the local database and displayed in a FlatList. The FlatList is used to
+ display each high score in a HighScoreDisplay component. The HighScoreDisplay component displays the high 
+ score for a game mode along with an icon from the GameModes constant.
+
+*/
+
+import { View, StyleSheet, FlatList } from "react-native";
 import { Stack } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Colors, GameModes } from "../constants/Constants";

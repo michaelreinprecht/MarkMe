@@ -1,3 +1,14 @@
+/*
+
+A reusable Start-Game-Page for different games in the App.
+Needs the following properties:
+- gametitle: The title of the game
+- icon: The icon of the game
+- gameInfoText: The information text of the game
+- gamePath: The path to the page with the actual game
+
+*/
+
 import React from "react";
 import { View, StyleSheet, ImageSourcePropType } from "react-native";
 import { Stack } from "expo-router";
@@ -9,10 +20,10 @@ import GameInfoField from "../components/GameInfoField";
 
 // Define a type for the props
 type GameStartPageProps = {
-  gametitle: string; // Required text string for the button
-  icon: ImageSourcePropType; // Required URL string for navigation
-  gameInfoText: string; // Required text string for the button
-  gamePath: string; // Required URL string for navigation
+  gametitle: string;
+  icon: ImageSourcePropType;
+  gameInfoText: string;
+  gamePath: string;
 };
 
 export default function GameStartPage({
@@ -24,10 +35,8 @@ export default function GameStartPage({
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home" }} />
-
-      {/* Wrapping all elements in a centered view */}
       <View style={styles.content}>
-        <View style={{ flex: 2.5}}>
+        <View style={{ flex: 2.5 }}>
           <PageTitle text={gametitle} />
         </View>
 
@@ -39,7 +48,14 @@ export default function GameStartPage({
           <GameInfoField text={gameInfoText} />
         </View>
 
-        <View style={{ flex: 2, width: "100%", alignItems: "center", marginBottom: 10 }}>
+        <View
+          style={{
+            flex: 2,
+            width: "100%",
+            alignItems: "center",
+            marginBottom: 10,
+          }}
+        >
           <NavigationButton
             text="Start"
             replace={true}
@@ -60,8 +76,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "center", // Center content horizontally
+    alignItems: "center",
     justifyContent: "space-evenly",
-    gap: 0, // Gap between elements (available in React Native 0.71+)
   },
 });
