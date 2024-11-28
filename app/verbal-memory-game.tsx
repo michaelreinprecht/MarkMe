@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 import { Colors } from "../constants/Constants";
 
-
-
 // Import the JSON file
-import wordsJson from '../assets/words.json';
+import wordsJson from "../assets/words.json";
 
 const VerbalMemoryGame: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
-  const [currentWord, setCurrentWord] = useState<string>('');
+  const [currentWord, setCurrentWord] = useState<string>("");
   const [seenWords, setSeenWords] = useState<Set<string>>(new Set());
   const [score, setScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
@@ -75,10 +73,10 @@ const VerbalMemoryGame: React.FC = () => {
 
       {/* Buttons */}
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleSeen}>
+        <TouchableOpacity style={styles.button} onPressOut={handleSeen}>
           <Text style={styles.buttonText}>Seen</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleNew}>
+        <TouchableOpacity style={styles.button} onPressOut={handleNew}>
           <Text style={styles.buttonText}>New</Text>
         </TouchableOpacity>
       </View>
@@ -91,58 +89,57 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     flex: 1,
     alignItems: "center",
-    justifyContent: "center", 
+    justifyContent: "center",
   },
   header: {
     fontSize: 24,
-    color: '#ffffff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    position: 'absolute',
+    color: "#ffffff",
+    fontWeight: "bold",
+    textAlign: "center",
+    position: "absolute",
     top: 40,
-    width: '100%', 
+    width: "100%",
   },
   level: {
     fontSize: 18,
-    color: '#dcdde1',
-    position: 'absolute', 
-    top: 80, 
-    width: '100%', 
-    textAlign: 'center', 
+    color: "#dcdde1",
+    position: "absolute",
+    top: 80,
+    width: "100%",
+    textAlign: "center",
   },
   word: {
     fontSize: 36,
-    color: '#ffffff',
-    fontWeight: 'bold',
-    marginVertical: 20, 
-    textAlign: 'center', 
-    justifyContent: 'center'
+    color: "#ffffff",
+    fontWeight: "bold",
+    marginVertical: 20,
+    textAlign: "center",
+    justifyContent: "center",
   },
   buttonsContainer: {
-    width: '80%',
+    width: "80%",
   },
   button: {
-    backgroundColor: '#02128D',
+    backgroundColor: "#02128D",
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 10,
     marginBottom: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 5,
     elevation: 4,
   },
   buttonText: {
-    color: '#ffffff',
+    color: "#ffffff",
     fontSize: 18,
-    fontWeight: '600',
-    textTransform: 'uppercase',
+    fontWeight: "600",
+    textTransform: "uppercase",
     letterSpacing: 1,
   },
-  
 });
 
 export default VerbalMemoryGame;
