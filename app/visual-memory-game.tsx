@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { Colors } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import MemoryGrid from "../components/MemoryGrid";
@@ -118,9 +118,11 @@ export default function VisualMemory() {
         inputEnabled={inputEnabled}
       />
 
-      {!inputEnabled && (
-        <Text style={styles.info}>Please wait for the sequence to finish</Text>
-      )}
+      <Text style={styles.info}>
+        {!inputEnabled
+          ? "Try to memorize the pattern"
+          : "Repeat the pattern shown to you before"}
+      </Text>
     </View>
   );
 }
@@ -144,5 +146,8 @@ const styles = StyleSheet.create({
   },
   info: {
     color: Colors.lightText,
+    fontSize: Fonts.sizes.medium,
+    minHeight: 20,
+    textAlign: "center",
   },
 });

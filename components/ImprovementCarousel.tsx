@@ -1,6 +1,5 @@
-// ImprovementCarousel.tsx
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import ImprovementDisplay from "./ImprovementDisplay";
 import { GameModes } from "../constants/Constants";
@@ -39,23 +38,58 @@ const renderItem = ({ item }: { item: PlayerImprovement }) => (
 
 export default function ImprovementCarousel() {
   return (
-    <Carousel
-      autoPlayInterval={2000}
-      data={mockHighScores}
-      height={100}
-      loop={true}
-      pagingEnabled={true}
-      snapEnabled={true}
-      width={430}
-      style={{
-        width: 430,
-      }}
-      mode="parallax"
-      modeConfig={{
-        parallaxScrollingScale: 0.9,
-        parallaxScrollingOffset: 80,
-      }}
-      renderItem={renderItem}
-    />
+    <View style={styles.container}>
+      {/* Left vignette image */}
+      <Image
+        source={require("../assets/PullEffectLeft.png")}
+        style={styles.leftImage}
+      />
+
+      {/* Right vignette image */}
+      <Image
+        source={require("../assets/PullEffectRight.png")}
+        style={styles.rightImage}
+      />
+
+      {/* Carousel in the background */}
+      <Carousel
+        autoPlayInterval={2000}
+        data={mockHighScores}
+        height={100}
+        loop={true}
+        pagingEnabled={true}
+        snapEnabled={true}
+        width={430}
+        renderItem={renderItem}
+      />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 90, // Slightly larger than carousel height to allow room for images
+    position: "relative", // Enable absolute positioning within this container
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  leftImage: {
+    position: "absolute",
+    left: 0, // Align to the left edge
+    top: 0, // Align to the top edge of the container
+    height: 90,
+    opacity: 0.5, // Set a lower opacity for the vignette effect
+    width: 20, // Set a fixed width for the vignette effect
+    resizeMode: "stretch", // Ensure it scales correctly
+  },
+  rightImage: {
+    position: "absolute",
+    right: 0, // Align to the right edge
+    top: 0, // Align to the top edge of the container
+    height: 90,
+    opacity: 0.5, // Set a lower opacity for the vignette effect
+    width: 20, // Set a fixed width for the vignette effect
+    resizeMode: "stretch", // Ensure it scales correctly
+  },
+});
