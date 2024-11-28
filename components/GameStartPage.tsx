@@ -45,14 +45,12 @@ export default function GameStartPage({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
     backgroundColor: Colors.background,
-    alignItems: "center", // Center horizontally
-    justifyContent: "flex-start", // Center vertically
   },
   content: {
     alignItems: "center", // Center content horizontally
     justifyContent: "space-evenly", // Spread out the elements vertically
+    flexGrow: 1,
     gap: 5, // Gap between elements (available in React Native 0.71+)
   },
 });
