@@ -49,8 +49,8 @@ export default function NavigationButton({
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    marginVertical: 2,
     width: "80%",
-    marginVertical: 0,
   },
   button: {
     flexDirection: "row", // Allows icon and text to be side by side
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: Colors.buttonBorder,
-    minHeight: 85,
+    minHeight: "14%",
+    maxHeight: 90,
   },
   icon: {
     width: 40,
