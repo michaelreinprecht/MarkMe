@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { Colors } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
 
 // Import the JSON file
 import wordsJson from "../assets/words.json";
+import PageTitle from "../components/PageTitle";
+import LevelIndicator from "../components/LevelIndicator";
 
 const VerbalMemoryGame: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
   const [currentWord, setCurrentWord] = useState<string>("");
   const [seenWords, setSeenWords] = useState<Set<string>>(new Set());
-  const [score, setScore] = useState<number>(0);
+  const [level, setLevel] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
   const router = useRouter();
   const title = "Verbal Memory";
@@ -24,7 +26,7 @@ const VerbalMemoryGame: React.FC = () => {
 
   const handleSeen = () => {
     if (seenWords.has(currentWord)) {
-      setScore(score + 1);
+      setLevel(level + 1);
     } else {
       endGame();
     }
@@ -33,7 +35,7 @@ const VerbalMemoryGame: React.FC = () => {
 
   const handleNew = () => {
     if (!seenWords.has(currentWord)) {
-      setScore(score + 1);
+      setLevel(level + 1);
       setSeenWords((prev) => new Set([...prev, currentWord]));
     } else {
       endGame();
@@ -47,31 +49,27 @@ const VerbalMemoryGame: React.FC = () => {
   };
 
   const endGame = () => {
-    if (score > highScore) {
-      setHighScore(score);
+    if (level > highScore) {
+      setHighScore(level);
     }
-    router.replace(`/gameOver?title=${title}&level=${score}`);
+    router.replace(`/gameOver?title=${title}&level=${level}`);
     resetGame();
   };
 
   const resetGame = () => {
-    setScore(0);
+    setLevel(0);
     setSeenWords(new Set());
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   };
 
   return (
     <View style={styles.container}>
-      {/* Centered Header */}
-      <Text style={styles.header}>{title}</Text>
 
-      {/* Score Display */}
-      <Text style={styles.level}>Level {score}</Text>
+      <PageTitle text={title} />
+      <LevelIndicator level={level} />
 
-      {/* Word Display */}
       <Text style={styles.word}>{currentWord}</Text>
 
-      {/* Buttons */}
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPressOut={handleSeen}>
           <Text style={styles.buttonText}>Seen</Text>
@@ -91,26 +89,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  header: {
-    fontSize: 24,
-    color: "#ffffff",
-    fontWeight: "bold",
-    textAlign: "center",
-    position: "absolute",
-    top: 40,
-    width: "100%",
-  },
-  level: {
-    fontSize: 18,
-    color: "#dcdde1",
-    position: "absolute",
-    top: 80,
-    width: "100%",
-    textAlign: "center",
-  },
   word: {
     fontSize: 36,
-    color: "#ffffff",
+    color: Colors.lightText,
     fontWeight: "bold",
     marginVertical: 20,
     textAlign: "center",
@@ -120,7 +101,7 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   button: {
-    backgroundColor: "#02128D",
+    backgroundColor: Colors.buttonTertiary,
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 10,
@@ -134,7 +115,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   buttonText: {
-    color: "#ffffff",
+    color: Colors.lightText,
     fontSize: 18,
     fontWeight: "600",
     textTransform: "uppercase",

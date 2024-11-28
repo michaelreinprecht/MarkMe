@@ -130,16 +130,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", // Center the gamePad in the view
   },
-  gamePad: {
-    width: "90%", // Adjust width to fit the grid
-    aspectRatio: 1, // Ensures a square grid (width = height)
-    alignItems: "center", // Center grid content horizontally
-    justifyContent: "center", // Center grid content vertically
-  },
-  row: {
-    flexDirection: "row", // Ensure cards in a row are arranged horizontally
-    justifyContent: "center", // Center cards within each row
-  },
   info: {
     color: Colors.lightText,
     fontSize: Fonts.sizes.medium,

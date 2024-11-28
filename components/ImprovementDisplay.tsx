@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     width: "100%", // Ensure it takes up the full width of its container
     maxWidth: 400, // Prevents stretching beyond a maximum width
-    flexWrap: "wrap", // Allow the text to wrap instead of overflowing
+    flexWrap: "wrap"
   },
   description: {
     color: Colors.lightText,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginRight: 10, // To give space between the text and icon
     flexShrink: 1, // Allows text to shrink to avoid overflow
-    flexBasis: "80%", // Ensures the text takes up more space before the icon
+    flexBasis: "80%", // Ensures the text takes up more space before the icon    
   },
   icon: {
     width: 50, // Fixed size for icon

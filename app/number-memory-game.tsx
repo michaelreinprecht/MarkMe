@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {View,Text,StyleSheet,TextInput,Button,KeyboardAvoidingView,Platform} from "react-native";
+import {View,Text,StyleSheet,TextInput,Button,KeyboardAvoidingView,Platform, TouchableOpacity} from "react-native";
 import { useRouter } from "expo-router";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
-import { Colors } from "../constants/Constants";
+import { Colors, Fonts } from "../constants/Constants";
 
 export default function NumberMemory() {
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
   const [sequence, setSequence] = useState<string>(""); 
   const [userInput, setUserInput] = useState<string>(""); 
   const [isInputEnabled, setIsInputEnabled] = useState(false); 
@@ -20,7 +20,7 @@ export default function NumberMemory() {
   // Generate a random number sequence based on the level
   const generateRandomSequence = (length: number) => {
     let newSequence = "";
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length + 1; i++) {
       newSequence += Math.floor(Math.random() * 10); // Random digit between 0-9
     }
     return newSequence;
@@ -65,12 +65,8 @@ export default function NumberMemory() {
       <LevelIndicator level={level} />
 
       <View style={styles.gameArea}>
-        {displayNumber ? (
-          <Text style={styles.numberDisplay}>{sequence}</Text>
-        ) : (
-          <Text style={styles.infoText}>Enter the number</Text>
-        )}
-
+        <Text style={styles.info}>{displayNumber ? sequence : "Enter the number"}</Text>
+        
         <TextInput
           style={styles.input}
           value={userInput}
@@ -81,11 +77,9 @@ export default function NumberMemory() {
           editable={isInputEnabled}
         />
 
-        <Button
-          title="Submit"
-          onPress={handleSubmit}
-          disabled={!isInputEnabled || userInput.length === 0}
-        />
+        <TouchableOpacity style={styles.button} onPressOut={handleSubmit}  disabled={!isInputEnabled || userInput.length === 0}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
@@ -93,26 +87,25 @@ export default function NumberMemory() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.background,
-        flex: 1,
-        alignItems: "center",
-      },
+      backgroundColor: Colors.background,
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+    },
     gameArea: {
         alignItems: "center",
         marginTop: 20,
+        width: "100%"
     },
-    numberDisplay: {
-        fontSize: 32,
-        fontWeight: "bold",
-        color: "white", // Changed to white
-        marginBottom: 20,
-    },
-    infoText: {
-        color: Colors.lightText, // Changed to white
-        marginBottom: 20,
+    info: {
+      color: Colors.lightText,
+      fontSize: Fonts.sizes.medium,
+      minHeight: 20,
+      marginBottom: 10,
+      textAlign: "center",
     },
     input: {
-        borderColor: "white", // Changed to white
+        borderColor: Colors.lightText,
         borderWidth: 1,
         borderRadius: 8,
         padding: 10,
@@ -120,6 +113,28 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: "center",
         marginBottom: 20,
-        color: "white", // Changed to white
+        color: Colors.lightText,
+    },
+    button: {
+      backgroundColor: Colors.buttonTertiary,
+      paddingVertical: 14,
+      paddingHorizontal: 24,
+      borderRadius: 10,
+      marginBottom: 16,
+      alignItems: "center",
+      justifyContent: "center",
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.15,
+      shadowRadius: 5,
+      elevation: 4,
+      width: "80%"
+    },
+    buttonText: {
+      color: Colors.lightText,
+      fontSize: 18,
+      fontWeight: "600",
+      textTransform: "uppercase",
+      letterSpacing: 1,
     },
 });

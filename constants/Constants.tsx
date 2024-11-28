@@ -10,6 +10,7 @@ const Colors = {
   headerTint: "#f4511e",
   buttonPrimary: "#00000080",
   buttonSecondary: "#1F5B0C",
+  buttonTertiary: "#02128D",
   buttonLight: "#FFFFFF",
   buttonBorder: "#B0BEC5",
   background: "#0A1A43",
