@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, Image, ImageSourcePropType } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  ImageSourcePropType,
+  Dimensions,
+} from "react-native";
 
 // Define a type for the props
 type GameIconProps = {
@@ -7,12 +12,12 @@ type GameIconProps = {
 };
 
 export default function GameIcon({ icon: icon }: GameIconProps) {
-  return <Image source={icon} style={styles.image} />;
-}
+  //const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
-const styles = StyleSheet.create({
-  image: {
-    width: 250,
-    height: 250,
-  },
-});
+  return (
+    <Image
+      source={icon}
+      style={{ objectFit: "scale-down", width: "100%", height: "100%" }}
+    />
+  );
+}
