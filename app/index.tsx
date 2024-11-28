@@ -54,12 +54,14 @@ export default function MainMenu() {
           />
         ))}
 
+        <View style={styles.spacer} />
         {/* Add Highscores button */}
         <NavigationButton
           text="Highscores"
           path="/highscores"
           icon={require("../assets/HighScore.png")}
         />
+        <View style={styles.spacer} />
       </View>
     </View>
   );
@@ -79,5 +81,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly", // Aligns buttons at the top of the remaining space
     width: "100%",
     alignItems: "center", // Keep buttons centered horizontally
+  },
+  spacer: {
+    height: 20,
   },
 });

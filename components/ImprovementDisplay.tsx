@@ -19,12 +19,16 @@ export default function ImprovementDisplay({
   icon,
 }: ImprovementDisplayProps) {
   return (
-    <View style={styles.container}>
-      <View style={styles.improvementView}>
-        <Text style={styles.description}>{description}</Text>
-        <Image source={icon} style={styles.icon} resizeMode="contain" />
+    <>
+      <View style={styles.spacer}>
+        <View style={styles.container}>
+          <View style={styles.improvementView}>
+            <Text style={styles.description}>{description}</Text>
+            <Image source={icon} style={styles.icon} resizeMode="contain" />
+          </View>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -35,12 +39,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center", // This centers the content inside the container
   },
+  spacer: {
+    marginLeft: "8%",
+    marginRight: "8%",
+  },
   improvementView: {
     backgroundColor: Colors.buttonPrimary,
     flexDirection: "row",
     justifyContent: "flex-start", // Align items starting from the left
     alignItems: "flex-start", // Align the items to the start
-    padding: 20,
+    padding: 15,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "black",
