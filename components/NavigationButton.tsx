@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   ImageSourcePropType,
+  Dimensions,
 } from "react-native";
 import { Link } from "expo-router";
 import { Colors, Fonts } from "../constants/Constants";
@@ -26,6 +27,8 @@ export default function NavigationButton({
   icon,
   backgroundColor = Colors.buttonPrimary,
 }: NavigationButtonProps) {
+  const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+
   return (
     <View style={styles.buttonContainer}>
       {/* Link overrides style from Touchableopacity */}
@@ -36,6 +39,7 @@ export default function NavigationButton({
         style={{
           backgroundColor: backgroundColor,
           justifyContent: icon ? "space-between" : "center",
+          minHeight: screenHeight * 0.09,
         }}
       >
         <TouchableOpacity style={styles.button}>
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: Colors.buttonBorder,
-    minHeight: "20%",
+    flexGrow: 1,
   },
   icon: {
     width: 40,
