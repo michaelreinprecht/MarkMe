@@ -1,7 +1,7 @@
 /*
 
-This page includes the actual implementation for the number memory game (including the game logic).
-(This page flickers on the IOS device of one teammember for some reason, we're not sure why yet)
+A component for displaying an improvement with an icon. Used in the main page screen to show the improvements the user has made 
+inside of a carousel view. Should keep the user motivated to keep playing and improving.
 
 */
 
