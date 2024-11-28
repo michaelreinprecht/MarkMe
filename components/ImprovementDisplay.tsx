@@ -23,8 +23,12 @@ export default function ImprovementDisplay({
       <View style={styles.spacer}>
         <View style={styles.container}>
           <View style={styles.improvementView}>
-            <Text style={styles.description}>{description}</Text>
-            <Image source={icon} style={styles.icon} resizeMode="contain" />
+            <View style={{width: "90%"}}>
+              <Text style={styles.description}>{description}</Text>
+            </View>
+            <View style={{width: "10%"}}>
+              <Image source={icon} style={styles.icon} resizeMode="contain" />
+            </View>
           </View>
         </View>
       </View>
@@ -46,15 +50,14 @@ const styles = StyleSheet.create({
   improvementView: {
     backgroundColor: Colors.buttonPrimary,
     flexDirection: "row",
-    justifyContent: "flex-start", // Align items starting from the left
-    alignItems: "flex-start", // Align the items to the start
+    justifyContent: "center", // Align items starting from the left
+    alignItems: "center", // Align the items to the start
     padding: 15,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "black",
     width: "100%", // Ensure it takes up the full width of its container
     maxWidth: 400, // Prevents stretching beyond a maximum width
-    flexWrap: "wrap"
   },
   description: {
     color: Colors.lightText,
@@ -70,5 +73,6 @@ const styles = StyleSheet.create({
     height: 50, // Fixed size for icon
     alignSelf: "center", // Keeps the icon aligned with the start of the text
     marginTop: 4, // Optional: Adds a little space between the icon and text
+    marginRight: 5
   },
 });
