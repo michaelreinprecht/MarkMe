@@ -1,3 +1,12 @@
+/*
+
+This code is used for handling and accessing data on the sqlite database.
+It allows saving new high scores, getting all high scores, and getting the high score for a specific mode.
+There is no need to define if a new score is a highscore, this code will handle that.
+All scores will be saved, but only highscores will keep the isHighScore flag as true.
+
+*/
+
 //https://docs.expo.dev/versions/latest/sdk/sqlite/
 import * as SQLite from "expo-sqlite";
 

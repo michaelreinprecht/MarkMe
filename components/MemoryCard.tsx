@@ -1,3 +1,9 @@
+/*
+
+A card component, which can either be active or not active. Used to display sequences or patterns in SequenceMemory or VisualMemory.
+
+*/
+
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Colors } from "../constants/Constants";
@@ -28,7 +34,7 @@ export default function MemoryCard({
   };
 
   const handlePressOut = () => {
-    if (!disable){
+    if (!disable) {
       setIsPressed(false);
       onClick(id);
     }

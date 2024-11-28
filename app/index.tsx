@@ -1,4 +1,10 @@
-// MainMenu.tsx
+/*
+
+This is the main menu of the app. It displays the app title, a carousel of improvement notifications, and buttons to navigate
+ to the different game modes and highscores. The main menu is the first screen the user sees when they open the app.
+
+*/
+
 import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import NavigationButton from "../components/NavigationButton";

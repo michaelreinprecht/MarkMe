@@ -1,7 +1,13 @@
+/*
+
+A simple component for displaying a title on a page. The title can be customized with a text and a font size.
+Helps to keep the titles consistent throughout the app.
+
+*/
+
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { Colors, Fonts } from "../constants/Constants";
-import { View } from "react-native";
 
 // Define a type for the props
 type PageTitleProps = {

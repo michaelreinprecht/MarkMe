@@ -1,3 +1,9 @@
+/*
+
+
+
+*/
+
 import React from "react";
 import {
   View,
@@ -38,10 +44,10 @@ export default function ImprovementDisplay({
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%", // Use a percentage to make sure the width adapts to the parent
-    minWidth: 250, // Optional: Ensures a minimum width
+    width: "100%",
+    minWidth: 250,
     flexDirection: "column",
-    alignItems: "center", // This centers the content inside the container
+    alignItems: "center",
   },
   spacer: {
     marginLeft: "8%",

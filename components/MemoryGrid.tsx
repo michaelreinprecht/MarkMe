@@ -1,7 +1,9 @@
-/* MemoryGrid.tsx
+/*
+
 Purpose: Component that renders a grid with a variable size of MemoryCard components, 
 wether they are clicked or highlighted is determined by clickedCards and/or highlightedCards. 
 The user can click on the cards if inputEnabled is true.
+
 */
 
 import React from "react";
@@ -50,13 +52,13 @@ export default function MemoryGrid({
 
 const styles = StyleSheet.create({
   gamePad: {
-    width: "90%", // Adjust width to fit the grid
+    width: "90%",
     aspectRatio: 1, // Ensures a square grid (width = height)
-    alignItems: "center", // Center grid content horizontally
-    justifyContent: "center", // Center grid content vertically
+    alignItems: "center",
+    justifyContent: "center",
   },
   row: {
-    flexDirection: "row", // Ensure cards in a row are arranged horizontally
-    justifyContent: "center", // Center cards within each row
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });

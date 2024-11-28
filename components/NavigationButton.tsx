@@ -1,3 +1,10 @@
+/*
+
+A component which utilizes the Expo Link in Combination with a TouchableOpacity to create a simple to use button for
+navigation. The button can be customized with a text, icon, background color and path.
+
+*/
+
 import React from "react";
 import {
   View,

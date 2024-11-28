@@ -1,3 +1,11 @@
+/*
+
+A carousel component for displaying motivating player improvements, to keep players interested in the games. 
+This component is used in the HomeScreen.tsx.
+Currently only desplays mock data.
+
+*/
+
 import React from "react";
 import { StyleSheet, View, Image, Dimensions } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
@@ -71,27 +79,27 @@ export default function ImprovementCarousel() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 90, // Slightly larger than carousel height to allow room for images
-    position: "relative", // Enable absolute positioning within this container
+    height: 90,
+    position: "relative",
     justifyContent: "center",
     alignItems: "center",
   },
   leftImage: {
     position: "absolute",
-    left: 0, // Align to the left edge
-    top: 0, // Align to the top edge of the container
+    left: 0,
+    top: 0,
     height: 90,
-    opacity: 0.5, // Set a lower opacity for the vignette effect
-    width: 20, // Set a fixed width for the vignette effect
-    resizeMode: "stretch", // Ensure it scales correctly
+    opacity: 0.5,
+    width: 20,
+    resizeMode: "stretch",
   },
   rightImage: {
     position: "absolute",
-    right: 0, // Align to the right edge
-    top: 0, // Align to the top edge of the container
+    right: 0,
+    top: 0,
     height: 90,
-    opacity: 0.5, // Set a lower opacity for the vignette effect
-    width: 20, // Set a fixed width for the vignette effect
-    resizeMode: "stretch", // Ensure it scales correctly
+    opacity: 0.5,
+    width: 20,
+    resizeMode: "stretch",
   },
 });

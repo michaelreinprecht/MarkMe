@@ -1,5 +1,10 @@
-// This file holds constants for colors or fonts that are used throughout the app.
-// By reusing those constants, we can ensure that the app has a consistent look and feel.
+/* 
+
+This file holds constants for colors or fonts that are used throughout the app.
+Furthermore there are constants for paths for the possible game modes and their respective icons.
+By reusing those constants, we can ensure that the app has a consistent look and feel.
+
+*/
 
 import SequenceMemoryIcon from "../assets/GridMemory.png";
 import NumberMemoryIcon from "../assets/NumberMemory.png";

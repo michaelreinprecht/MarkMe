@@ -1,3 +1,10 @@
+/*
+
+This page includes the actual implementation for the number memory game (including the game logic).
+(This page flickers on the IOS device of one teammember for some reason, we're not sure why yet)
+
+*/
+
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
