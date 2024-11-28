@@ -6,7 +6,7 @@ import PageTitle from "../components/PageTitle";
 import { Colors } from "../constants/Constants";
 
 export default function NumberMemory() {
-  const [level, setLevel] = useState(0);
+  const [level, setLevel] = useState(1);
   const [sequence, setSequence] = useState<string>(""); 
   const [userInput, setUserInput] = useState<string>(""); 
   const [isInputEnabled, setIsInputEnabled] = useState(false); 
@@ -29,6 +29,7 @@ export default function NumberMemory() {
   // Update the sequence whenever the level changes
   useEffect(() => {
     const newSequence = generateRandomSequence(level);
+    console.log("Generated sequence:", newSequence); // Debug log
     setSequence(newSequence);
     setDisplayNumber(true); // Show the number initially
     setIsInputEnabled(false);
