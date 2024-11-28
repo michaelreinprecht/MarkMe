@@ -27,7 +27,7 @@ export default function GameStartPage({
 
       {/* Wrapping all elements in a centered view */}
       <View style={styles.content}>
-        <View style={{ flex: 1.5 }}>
+        <View style={{ flex: 2.5}}>
           <PageTitle text={gametitle} />
         </View>
 
@@ -35,11 +35,11 @@ export default function GameStartPage({
           <GameIcon icon={icon} />
         </View>
 
-        <View style={{ flex: 2 }}>
+        <View style={{ flex: 2.5 }}>
           <GameInfoField text={gameInfoText} />
         </View>
 
-        <View style={{ flex: 2, width: "100%", alignItems: "center" }}>
+        <View style={{ flex: 2, width: "100%", alignItems: "center", marginBottom: 10 }}>
           <NavigationButton
             text="Start"
             replace={true}
@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center", // Center content horizontally
     justifyContent: "space-evenly",
-    gap: 10, // Gap between elements (available in React Native 0.71+)
+    gap: 0, // Gap between elements (available in React Native 0.71+)
   },
 });
