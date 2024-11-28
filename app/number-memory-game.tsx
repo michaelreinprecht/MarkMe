@@ -29,7 +29,6 @@ export default function NumberMemory() {
   // Update the sequence whenever the level changes
   useEffect(() => {
     const newSequence = generateRandomSequence(level);
-    console.log("Generated sequence:", newSequence); // Debug log
     setSequence(newSequence);
     setDisplayNumber(true); // Show the number initially
     setIsInputEnabled(false);

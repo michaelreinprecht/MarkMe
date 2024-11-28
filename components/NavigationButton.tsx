@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderWidth: 1,
     borderColor: Colors.buttonBorder,
-    minHeight: "20%",
+    flexGrow: 1,
+    minHeight: 80,
   },
   icon: {
     width: 40,
