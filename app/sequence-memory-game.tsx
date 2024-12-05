@@ -12,8 +12,9 @@ import { Colors, Fonts } from "../constants/Constants";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import MemoryGrid from "../components/MemoryGrid";
+import InstructionReminder from "../components/InstructionReminder";
 
-export default function SequenceMemory() {
+export default function SequenceMemoryGame() {
   const [level, setLevel] = useState(0);
   const [sequence, setSequence] = useState<number[]>([]);
   const [clickedCards, setClickedCards] = useState<number[]>([]);
@@ -115,18 +116,18 @@ export default function SequenceMemory() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
+      <InstructionReminder 
+        firstText="Try to memorize the sequence"
+        secondText="Repeat the sequence shown to you before"
+        displayFirstText={!inputEnabled}
+      />
+
       <MemoryGrid
         highlightedCards={highlightedCards}
         gridSize={gridSize}
         onCardClick={handleCardClick}
         inputEnabled={inputEnabled}
       />
-
-      <Text style={styles.info}>
-        {!inputEnabled
-          ? "Memorize sequence"
-          : "Repeat the sequence shown to you before"}
-      </Text>
     </View>
   );
 }
@@ -137,11 +138,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center", // Center the gamePad in the view
-  },
-  info: {
-    color: Colors.lightText,
-    fontSize: Fonts.sizes.medium,
-    minHeight: 20,
-    textAlign: "center",
-  },
+  }
 });

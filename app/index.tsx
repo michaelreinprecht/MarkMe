@@ -12,7 +12,7 @@ import { Colors, GameModes } from "../constants/Constants";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import PageTitle from "../components/PageTitle";
-import { init } from "../localDB/DBHighscore";
+import { initDB } from "../localDB/DBHighscore";
 import ImprovementCarousel from "../components/ImprovementCarousel"; // Import the new carousel component
 
 SplashScreen.preventAutoHideAsync();
@@ -25,7 +25,7 @@ export default function MainMenu() {
   // Initialize DB (creates it and new table if it doesn't exist)
   useEffect(() => {
     const setupDatabase = async () => {
-      await init();
+      await initDB();
     };
 
     setupDatabase();

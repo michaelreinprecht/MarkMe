@@ -21,8 +21,9 @@ import { useRouter } from "expo-router";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import { Colors, Fonts } from "../constants/Constants";
+import InstructionReminder from "../components/InstructionReminder";
 
-export default function NumberMemory() {
+export default function NumberMemoryGame() {
   const [level, setLevel] = useState(0);
   const [sequence, setSequence] = useState<string>("");
   const [userInput, setUserInput] = useState<string>("");
@@ -83,11 +84,13 @@ export default function NumberMemory() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
-      <View style={styles.gameArea}>
-        <Text style={styles.info}>
-          {displayNumber ? sequence : "Enter the number"}
-        </Text>
+      <InstructionReminder 
+        firstText="Enter the number"
+        secondText={"Try to memorize the number: \n" + sequence}
+        displayFirstText={!displayNumber}
+      />
 
+      <View style={styles.gameArea}>        
         <TextInput
           style={styles.input}
           value={userInput}
@@ -123,13 +126,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     width: "100%",
-  },
-  info: {
-    color: Colors.lightText,
-    fontSize: Fonts.sizes.medium,
-    minHeight: 20,
-    marginBottom: 10,
-    textAlign: "center",
   },
   input: {
     borderColor: Colors.lightText,

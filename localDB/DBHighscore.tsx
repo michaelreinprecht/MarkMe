@@ -20,7 +20,7 @@ export type HighScore = {
 
 let db: SQLite.SQLiteDatabase;
 
-export const init = async () => {
+export const initDB = async () => {
   db = await SQLite.openDatabaseAsync("MarkMe.db");
 
   await db.runAsync(
