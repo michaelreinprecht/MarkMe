@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import { useNavigation } from "@react-navigation/native"; 
+import { useNavigation, NavigationContainerRef } from "@react-navigation/native";
 import { Colors } from "../constants/Constants";
 import { Stack } from "expo-router";
 
@@ -11,15 +11,33 @@ type CustomHeaderProps = {
 function CustomHeader({ title }: CustomHeaderProps) {
   const navigation = useNavigation();
 
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    const checkCanGoBack = () => {
+      if (navigation.canGoBack()) {
+        setShowArrow(true);
+      } else {
+        setShowArrow(false);
+      }
+    };
+
+    checkCanGoBack();
+
+    const unsubscribe = navigation.addListener("state", checkCanGoBack);
+
+    return unsubscribe; 
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
-        {navigation.canGoBack() && (
+        {/* Back Button */}
+        {showArrow && (
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
             <Text style={styles.backText}>←</Text>
           </TouchableOpacity>
         )}
-        <Text style={styles.title}>{title}</Text>
       </View>
     </SafeAreaView>
   );
@@ -31,7 +49,7 @@ export default function Layout() {
       <CustomHeader title="My Home" />
       <Stack
         screenOptions={{
-          headerShown: false, // Disable default header
+          headerShown: false,
         }}
       />
     </>
@@ -41,27 +59,25 @@ export default function Layout() {
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: Colors.background,
+    paddingTop: 16,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 0,
-    paddingBottom: 0,
+    paddingVertical: 10,
     backgroundColor: Colors.background,
+    position: "relative", 
   },
   backButton: {
-    position: "absolute",
+    position: "absolute", 
     left: 16,
+    justifyContent: "center",
+    alignItems: "center",
   },
   backText: {
     color: Colors.headerTint,
     fontSize: 24,
-  },
-  title: {
-    color: Colors.headerTint,
     fontWeight: "bold",
-    fontSize: 18,
-    textAlign: "center",
-  },
+  }
 });
