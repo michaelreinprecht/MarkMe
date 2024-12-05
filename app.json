@@ -5,7 +5,7 @@
     "scheme": "markme",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Icon1024.png",
     "newArchEnabled": true,
     "userInterfaceStyle": "light",
     "splash": {

@@ -28,14 +28,12 @@ export default function ImprovementDisplay({
   return (
     <>
       <View style={styles.spacer}>
-        <View style={styles.container}>
-          <View style={styles.improvementView}>
-            <View style={{width: "90%"}}>
-              <Text style={styles.description}>{description}</Text>
-            </View>
-            <View style={{width: "10%"}}>
-              <Image source={icon} style={styles.icon} resizeMode="contain" />
-            </View>
+        <View style={styles.improvementView}>
+          <View style={{ width: "90%" }}>
+            <Text style={styles.description}>{description}</Text>
+          </View>
+          <View style={{ width: "10%" }}>
+            <Image source={icon} style={styles.icon} resizeMode="contain" />
           </View>
         </View>
       </View>
@@ -44,12 +42,6 @@ export default function ImprovementDisplay({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    minWidth: 250,
-    flexDirection: "column",
-    alignItems: "center",
-  },
   spacer: {
     marginLeft: "8%",
     marginRight: "8%",
@@ -65,6 +57,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     width: "100%", // Ensure it takes up the full width of its container
     maxWidth: 400, // Prevents stretching beyond a maximum width
+    minWidth: 250,
   },
   description: {
     color: Colors.lightText,
@@ -73,13 +66,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginRight: 10, // To give space between the text and icon
     flexShrink: 1, // Allows text to shrink to avoid overflow
-    flexBasis: "80%", // Ensures the text takes up more space before the icon    
+    flexBasis: "80%", // Ensures the text takes up more space before the icon
   },
   icon: {
     width: 50, // Fixed size for icon
     height: 50, // Fixed size for icon
     alignSelf: "center", // Keeps the icon aligned with the start of the text
     marginTop: 4, // Optional: Adds a little space between the icon and text
-    marginRight: 5
+    marginRight: 5,
   },
 });

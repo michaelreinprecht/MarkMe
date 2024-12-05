@@ -6,7 +6,13 @@ This page includes the actual implementation for the verbal memory game (includi
 */
 
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { Colors, Fonts } from "../constants/Constants";
 
@@ -24,6 +30,8 @@ const VerbalMemoryGame: React.FC = () => {
   const [highScore, setHighScore] = useState<number>(0);
   const router = useRouter();
   const title = "Verbal Memory";
+
+  const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
   useEffect(() => {
     // Access the array from the JSON and set it in state
@@ -72,7 +80,6 @@ const VerbalMemoryGame: React.FC = () => {
 
   return (
     <View style={styles.container}>
-
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
@@ -84,11 +91,17 @@ const VerbalMemoryGame: React.FC = () => {
 
       <Text style={styles.word}>{currentWord}</Text>
 
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button} onPressOut={handleSeen}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, { minHeight: screenHeight * 0.09 }]}
+          onPressOut={handleSeen}
+        >
           <Text style={styles.buttonText}>Seen</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPressOut={handleNew}>
+        <TouchableOpacity
+          style={[styles.button, { minHeight: screenHeight * 0.09 }]}
+          onPressOut={handleNew}
+        >
           <Text style={styles.buttonText}>New</Text>
         </TouchableOpacity>
       </View>
@@ -102,6 +115,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    gap: 10,
   },
   word: {
     fontSize: 36,
@@ -111,29 +125,26 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
   },
-  buttonsContainer: {
+  buttonText: {
+    color: Colors.lightText,
+    fontSize: Fonts.sizes.large,
+    fontFamily: Fonts.family.button,
+  },
+  buttonContainer: {
+    gap: 10,
     width: "80%",
   },
   button: {
-    backgroundColor: Colors.buttonTertiary,
-    paddingVertical: 14,
-    paddingHorizontal: 24,
-    borderRadius: 10,
-    marginBottom: 16,
-    alignItems: "center",
+    backgroundColor: Colors.buttonSecondary,
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 4,
-  },
-  buttonText: {
-    color: Colors.lightText,
-    fontSize: 18,
-    fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 1,
+    flexDirection: "row", // Allows icon and text to be side by side
+    alignItems: "center",
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: Colors.buttonBorder,
+    flexGrow: 1,
   },
 });
 

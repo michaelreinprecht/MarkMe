@@ -7,14 +7,15 @@ try again or go back to the home page.
 */
 
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { Colors, GameModes } from "../constants/Constants";
+import { Colors, Fonts, GameModes } from "../constants/Constants";
 import PageTitle from "../components/PageTitle";
 import ReachedLevelIndicator from "../components/ReachedLevelIndicator";
 import HighScoreDisplay from "../components/HighScoreDisplay";
 import NavigationButton from "../components/NavigationButton";
 import { getHighScore, saveHighScore } from "../localDB/DBHighscore";
+import HomeNavigationButton from "../components/HomeNavigationButton";
 
 export default function GameOver() {
   const { title, level } = useLocalSearchParams<{
@@ -43,6 +44,10 @@ export default function GameOver() {
   return (
     <View style={styles.container}>
       <PageTitle text={title} />
+      <Text style={styles.description}>
+        Oh no, it seems you've made a mistake. No matter! Try again and keep on
+        improving!
+      </Text>
       <ReachedLevelIndicator level={parseInt(level)} />
 
       <HighScoreDisplay
@@ -57,10 +62,8 @@ export default function GameOver() {
         path={gameMode.gamePath}
         backgroundColor={Colors.buttonSecondary}
       />
-      <NavigationButton
+      <HomeNavigationButton
         text="Home Page"
-        replace={true}
-        path="/"
         backgroundColor={Colors.buttonSecondary}
       />
     </View>
@@ -75,5 +78,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     flexGrow: 1,
+  },
+  description: {
+    fontSize: Fonts.sizes.medium,
+    color: Colors.lightText,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 20,
   },
 });
