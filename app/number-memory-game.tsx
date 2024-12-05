@@ -127,13 +127,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "100%",
   },
-  info: {
-    color: Colors.lightText,
-    fontSize: Fonts.sizes.medium,
-    minHeight: 20,
-    marginBottom: 10,
-    textAlign: "center",
-  },
   input: {
     borderColor: Colors.lightText,
     borderWidth: 1,
