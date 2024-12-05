@@ -15,6 +15,7 @@ import ReachedLevelIndicator from "../components/ReachedLevelIndicator";
 import HighScoreDisplay from "../components/HighScoreDisplay";
 import NavigationButton from "../components/NavigationButton";
 import { getHighScore, saveHighScore } from "../localDB/DBHighscore";
+import HomeNavigationButton from "../components/HomeNavigationButton";
 
 export default function GameOver() {
   const { title, level } = useLocalSearchParams<{
@@ -61,10 +62,8 @@ export default function GameOver() {
         path={gameMode.gamePath}
         backgroundColor={Colors.buttonSecondary}
       />
-      <NavigationButton
+      <HomeNavigationButton
         text="Home Page"
-        replace={true}
-        path="/"
         backgroundColor={Colors.buttonSecondary}
       />
     </View>

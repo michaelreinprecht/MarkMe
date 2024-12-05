@@ -124,7 +124,7 @@ export default function SequenceMemory() {
 
       <Text style={styles.info}>
         {!inputEnabled
-          ? "Please wait for the sequence to finish"
+          ? "Memorize sequence"
           : "Repeat the sequence shown to you before"}
       </Text>
     </View>
