@@ -46,13 +46,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 70,
-    paddingBottom: 20,
+    paddingTop: 0,
+    paddingBottom: 0,
     backgroundColor: Colors.background,
   },
   backButton: {
-    paddingTop: 70,
-    position: "absolute", // Position it to the left
+    position: "absolute",
     left: 16,
   },
   backText: {
