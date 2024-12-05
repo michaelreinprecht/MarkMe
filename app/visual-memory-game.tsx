@@ -12,8 +12,9 @@ import { Colors, Fonts } from "../constants/Constants";
 import LevelIndicator from "../components/LevelIndicator";
 import PageTitle from "../components/PageTitle";
 import MemoryGrid from "../components/MemoryGrid";
+import InstructionReminder from "../components/InstructionReminder";
 
-export default function VisualMemory() {
+export default function VisualMemoryGame() {
   const [level, setLevel] = useState(0);
   const [pattern, setPattern] = useState<number[]>([]);
   const [clickedCards, setClickedCards] = useState<number[]>([]);
@@ -117,6 +118,12 @@ export default function VisualMemory() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
+      <InstructionReminder 
+        firstText="Try to memorize the pattern"
+        secondText="Repeat the pattern shown to you before"
+        displayFirstText={!inputEnabled}
+      />
+
       <MemoryGrid
         clickedCards={clickedCards}
         highlightedCards={highlightedCards}
@@ -124,12 +131,6 @@ export default function VisualMemory() {
         onCardClick={handleCardClick}
         inputEnabled={inputEnabled}
       />
-
-      <Text style={styles.info}>
-        {!inputEnabled
-          ? "Try to memorize the pattern"
-          : "Repeat the pattern shown to you before"}
-      </Text>
     </View>
   );
 }
@@ -150,11 +151,5 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row", // Ensure cards in a row are arranged horizontally
     justifyContent: "center", // Center cards within each row
-  },
-  info: {
-    color: Colors.lightText,
-    fontSize: Fonts.sizes.medium,
-    minHeight: 20,
-    textAlign: "center",
-  },
+  }
 });

@@ -15,7 +15,7 @@ import { getAllHighScores, HighScore } from "../localDB/DBHighscore";
 import HighScoreDisplay from "../components/HighScoreDisplay";
 import PageTitle from "../components/PageTitle";
 
-export default function HighscorePage() {
+export default function Highscores() {
   const [highScores, setHighScores] = useState<HighScore[]>([]);
 
   useEffect(() => {

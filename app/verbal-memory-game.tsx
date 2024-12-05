@@ -14,6 +14,7 @@ import { Colors, Fonts } from "../constants/Constants";
 import wordsJson from "../assets/words.json";
 import PageTitle from "../components/PageTitle";
 import LevelIndicator from "../components/LevelIndicator";
+import InstructionReminder from "../components/InstructionReminder";
 
 const VerbalMemoryGame: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
@@ -74,6 +75,12 @@ const VerbalMemoryGame: React.FC = () => {
 
       <PageTitle text={title} />
       <LevelIndicator level={level} />
+
+      <InstructionReminder 
+        firstText="Try to memorize the word and click the buttons below accordingly"
+        secondText=""
+        displayFirstText={true}
+      />
 
       <Text style={styles.word}>{currentWord}</Text>
 
