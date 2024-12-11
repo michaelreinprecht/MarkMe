@@ -30,6 +30,7 @@ export default function NumberMemoryGame() {
   const [userInput, setUserInput] = useState<string>("");
   const [isInputEnabled, setIsInputEnabled] = useState(false);
   const [displayNumber, setDisplayNumber] = useState(true);
+  const [isFirstTime, setIsFirstTime] = useState(true);
   const inputRef = useRef<TextInput>(null);
   const progress = useRef(new Animated.Value(1)).current;
   const router = useRouter();
@@ -39,6 +40,7 @@ export default function NumberMemoryGame() {
 
   // Duration per digit 1000ms per digit
   const durationPerDigit = 1000;
+  const firstTimeMultiplier = 2.3;
 
   // Generate a random number sequence based on the level
   const generateRandomSequence = (length: number) => {
@@ -56,10 +58,13 @@ export default function NumberMemoryGame() {
     setDisplayNumber(true); // Show the number initially
     setIsInputEnabled(false);
 
+    const displayMultiplier = isFirstTime ? firstTimeMultiplier : 1;
+    const displayDuration = newSequence.length * durationPerDigit * displayMultiplier;
+
     progress.setValue(1);
     Animated.timing(progress, {
       toValue: 0,
-      duration: newSequence.length * durationPerDigit,
+      duration: displayDuration,
       useNativeDriver: false, 
     }).start();
 
@@ -69,8 +74,9 @@ export default function NumberMemoryGame() {
     // Hide the number after the calculated display time
     const timer = setTimeout(() => {
       setDisplayNumber(false);
-      setIsInputEnabled(true); // Enable input after the number disappears
-    }, displayTime);
+      setIsInputEnabled(true); 
+      setIsFirstTime(false);
+    }, displayDuration);
 
     return () => clearTimeout(timer);
   }, [level]);
