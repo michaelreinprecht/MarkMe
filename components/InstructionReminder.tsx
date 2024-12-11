@@ -12,17 +12,25 @@ type InstructionReminderProps = {
     displayFirstText: boolean;
     firstText: string;
     secondText: string;
+    sequenceFontSize?: number;
   };
 
-export default function InstructionReminder({displayFirstText, firstText, secondText}: InstructionReminderProps){
+export default function InstructionReminder({displayFirstText, firstText, secondText, sequenceFontSize}: InstructionReminderProps){
+    if (displayFirstText) {
+      return <Text style={styles.info}>{firstText}</Text>;
+    }
+  
+    const [textBeforeSequence, sequence] = secondText.split("<b>");
+  
     return (
-        <Text style={styles.info}>
-            {displayFirstText
-            ? firstText
-            : secondText}
+      <Text style={styles.info}>
+        {textBeforeSequence + " "}
+        <Text style={[styles.sequence, { fontSize: sequenceFontSize }]}>
+          {sequence}
         </Text>
-    )
-}
+      </Text>
+    );
+  }
 
 const styles = StyleSheet.create({
     info: {
@@ -30,5 +38,9 @@ const styles = StyleSheet.create({
         fontSize: Fonts.sizes.medium,
         minHeight: 20,
         textAlign: "center",
-      },
+    },
+    sequence: {
+        fontWeight: "bold",
+        color: Colors.lightText,
+    },
   });

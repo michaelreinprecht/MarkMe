@@ -5,7 +5,7 @@ This page includes the actual implementation for the number memory game (includi
 
 */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import {
   Platform,
   TouchableOpacity,
   Dimensions,
+  Animated,
 } from "react-native";
 import { useRouter } from "expo-router";
 import LevelIndicator from "../components/LevelIndicator";
@@ -29,6 +30,8 @@ export default function NumberMemoryGame() {
   const [userInput, setUserInput] = useState<string>("");
   const [isInputEnabled, setIsInputEnabled] = useState(false);
   const [displayNumber, setDisplayNumber] = useState(true);
+  const inputRef = useRef<TextInput>(null);
+  const progress = useRef(new Animated.Value(1)).current;
   const router = useRouter();
   const title = "Number Memory";
 
@@ -53,6 +56,13 @@ export default function NumberMemoryGame() {
     setDisplayNumber(true); // Show the number initially
     setIsInputEnabled(false);
 
+    progress.setValue(1);
+    Animated.timing(progress, {
+      toValue: 0,
+      duration: newSequence.length * durationPerDigit,
+      useNativeDriver: false, 
+    }).start();
+
     // Calculate display time based on sequence length
     const displayTime = newSequence.length * durationPerDigit;
 
@@ -64,6 +74,12 @@ export default function NumberMemoryGame() {
 
     return () => clearTimeout(timer);
   }, [level]);
+
+  useEffect(() => {
+    if (isInputEnabled) {
+      inputRef.current?.focus(); // Programmatically focus the input field
+    }
+  }, [isInputEnabled]);
 
   const handleSubmit = () => {
     if (userInput === sequence) {
@@ -86,12 +102,28 @@ export default function NumberMemoryGame() {
 
       <InstructionReminder 
         firstText="Enter the number"
-        secondText={"Try to memorize the number: \n" + sequence}
+        secondText={"Memorize the number: \n<b>"+ sequence}
         displayFirstText={!displayNumber}
+        sequenceFontSize={50}
       />
 
-      <View style={styles.gameArea}>        
+    <View style={styles.progressBarContainer}>
+        <Animated.View
+          style={[
+            styles.progressBar,
+            {
+              width: progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: ["0%", "100%"],
+              }),
+            },
+          ]}
+        />
+      </View>
+
+      <View style={styles.gameArea}>     
         <TextInput
+          ref={inputRef}
           style={styles.input}
           value={userInput}
           onChangeText={setUserInput}
@@ -107,7 +139,7 @@ export default function NumberMemoryGame() {
             onPressOut={handleSubmit}
             disabled={!isInputEnabled || userInput.length === 0}
           >
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>Check</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -121,6 +153,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  progressBarContainer: {
+    height: 10,
+    width: "80%",
+    backgroundColor: Colors.lightText,
+    borderRadius: 5,
+    marginTop: 10,
+    overflow: "hidden", 
+  },
+  progressBar: {
+    height: "100%",
+    backgroundColor: Colors.buttonSecondary,
   },
   gameArea: {
     alignItems: "center",
