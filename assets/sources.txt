@@ -1,0 +1,8 @@
+Icon1024.png: https://www.canva.com/ai-image-generator/
+GridMemory.png: Selfmade
+HighScore.png: https://www.flaticon.com/de/kostenloses-icon/highscore_1887994
+NumberMemory.png: https://www.flaticon.com/free-icon/number-blocks_4002506
+PullEffectLeft.png: Selfmade
+PullEffectRight.png:Selfmade
+Trophy.png: https://www.flaticon.com/free-icon/high-score_7960328
+VerbalMemory.png: https://www.flaticon.com/free-icon/dictionary_4033369
