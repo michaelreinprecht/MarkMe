@@ -59,13 +59,14 @@ export default function NumberMemoryGame() {
     setIsInputEnabled(false);
 
     const displayMultiplier = isFirstTime ? firstTimeMultiplier : 1;
-    const displayDuration = newSequence.length * durationPerDigit * displayMultiplier;
+    const displayDuration =
+      newSequence.length * durationPerDigit * displayMultiplier;
 
     progress.setValue(1);
     Animated.timing(progress, {
       toValue: 0,
       duration: displayDuration,
-      useNativeDriver: false, 
+      useNativeDriver: false,
     }).start();
 
     // Calculate display time based on sequence length
@@ -74,7 +75,7 @@ export default function NumberMemoryGame() {
     // Hide the number after the calculated display time
     const timer = setTimeout(() => {
       setDisplayNumber(false);
-      setIsInputEnabled(true); 
+      setIsInputEnabled(true);
       setIsFirstTime(false);
     }, displayDuration);
 
@@ -83,7 +84,9 @@ export default function NumberMemoryGame() {
 
   useEffect(() => {
     if (isInputEnabled) {
-      inputRef.current?.focus(); // Programmatically focus the input field
+      setTimeout(() => {
+        inputRef.current?.focus(); // Ensure it focuses properly
+      }, 0);
     }
   }, [isInputEnabled]);
 
@@ -106,14 +109,14 @@ export default function NumberMemoryGame() {
       <PageTitle text={title} />
       <LevelIndicator level={level} />
 
-      <InstructionReminder 
+      <InstructionReminder
         firstText="Enter the number"
-        secondText={"Memorize the number: \n<b>"+ sequence}
+        secondText={"Memorize the number: \n<b>" + sequence}
         displayFirstText={!displayNumber}
         sequenceFontSize={50}
       />
 
-    <View style={styles.progressBarContainer}>
+      <View style={styles.progressBarContainer}>
         <Animated.View
           style={[
             styles.progressBar,
@@ -127,7 +130,7 @@ export default function NumberMemoryGame() {
         />
       </View>
 
-      <View style={styles.gameArea}>     
+      <View style={styles.gameArea}>
         <TextInput
           ref={inputRef}
           style={styles.input}
@@ -143,7 +146,7 @@ export default function NumberMemoryGame() {
           <TouchableOpacity
             style={[styles.button, { minHeight: screenHeight * 0.09 }]}
             onPressOut={handleSubmit}
-            disabled={!isInputEnabled || userInput.length === 0}
+            disabled={!isInputEnabled}
           >
             <Text style={styles.buttonText}>Check</Text>
           </TouchableOpacity>
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightText,
     borderRadius: 5,
     marginTop: 10,
-    overflow: "hidden", 
+    overflow: "hidden",
   },
   progressBar: {
     height: "100%",
